@@ -1815,9 +1815,9 @@ heroObs.observe(document.getElementById('hero'));
       iframe.allow='autoplay;encrypted-media;picture-in-picture';
       iframe.allowFullscreen=true;
       if(vertical){
-        iframe.style.cssText='position:absolute;top:0;left:0;width:100%;height:100%;border:none;';
+        iframe.style.cssText='position:absolute;top:0;left:0;width:100%;height:100%;border:none;pointer-events:none;';
       } else {
-        iframe.style.cssText='position:absolute;top:-25%;left:0;width:100%;height:150%;border:none;';
+        iframe.style.cssText='position:absolute;top:-25%;left:0;width:100%;height:150%;border:none;pointer-events:none;';
       }
       wrap.appendChild(iframe);
 
@@ -1843,20 +1843,21 @@ heroObs.observe(document.getElementById('hero'));
     },{once:true});
   }
 
-  function startFakeProgress(){
+  function startFakeProgress(durationSeconds){
     var wrap = document.getElementById('vsl-progress-wrap');
     var bar = document.getElementById('vsl-progress-bar');
     if(!wrap || !bar) return;
     wrap.style.display = 'block';
-    var duration = 17000; // ~17s para sensação de vídeo de 15min carregando rápido
+    var duration = (durationSeconds || 917) * 1000; // proporcional ao vídeo real (15:17 = 917s)
     var start = null;
-    function easeOutQuart(t){ return 1 - Math.pow(1 - t, 4); }
+    // easeOutCubic: rápido no início, suave e gradual até o fim — sem parecer forçado
+    function easeOutCubic(t){ return 1 - Math.pow(1 - t, 3); }
     function step(ts){
       if(!start) start = ts;
       var elapsed = ts - start;
       var t = Math.min(elapsed / duration, 1);
-      var eased = easeOutQuart(t);
-      bar.style.width = (eased * 96) + '%'; // para perto de 96%, nunca completa sozinho
+      var eased = easeOutCubic(t);
+      bar.style.width = (eased * 98) + '%'; // chega perto de 98%, nunca completa sozinho
       if(t < 1){
         requestAnimationFrame(step);
       }
@@ -1865,7 +1866,7 @@ heroObs.observe(document.getElementById('hero'));
   }
 
   document.addEventListener('DOMContentLoaded',function(){
-    ytPlayer('ytVSL','yvE1JVF-_TI',true, startFakeProgress);
+    ytPlayer('ytVSL','yvE1JVF-_TI',true, function(){ startFakeProgress(917); });
     ytPlayer('ytDepo1','zCC1epGv0q8',true);
     ytPlayer('ytDepo2','a-n-u52q1ZI',true);
   });
