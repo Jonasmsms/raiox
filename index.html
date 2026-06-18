@@ -1830,11 +1830,16 @@ heroObs.observe(document.getElementById('hero'));
 
 
       // Faixa larga opaca cobrindo toda a área central onde o navegador injeta controles nativos (anterior/play/próximo)
+      // Faixa sólida permanente — nunca desaparece, sempre cobrindo a área de controles nativos
+      var permCover = document.createElement('div');
+      permCover.style.cssText = 'position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:100%;max-width:240px;height:64px;border-radius:32px;background:#0a0805;z-index:9;pointer-events:none;';
+      wrap.appendChild(permCover);
+
       var ppBtn = document.createElement('div');
       ppBtn.style.cssText = 'position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:100%;max-width:240px;height:72px;border-radius:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:10;pointer-events:none;opacity:1;transition:opacity .35s ease;background:radial-gradient(ellipse,rgba(255,123,5,0.18) 0%,rgba(255,123,5,0.05) 55%,transparent 75%);';
 
       var ppPill = document.createElement('div');
-      ppPill.style.cssText = 'position:relative;width:100%;height:64px;border-radius:32px;background:rgba(8,6,3,0.78);backdrop-filter:blur(4px);border:1.5px solid rgba(255,159,5,0.7);box-shadow:0 0 20px rgba(255,123,5,0.45),0 0 40px rgba(255,123,5,0.18),inset 0 0 16px rgba(255,159,5,0.1);display:flex;align-items:center;justify-content:center;';
+      ppPill.style.cssText = 'position:relative;width:100%;height:64px;border-radius:32px;background:rgba(8,6,3,0.78);backdrop-filter:blur(4px);border:1.5px solid rgba(255,159,5,0.7);box-shadow:0 0 20px rgba(255,123,5,0.45),0 0 40px rgba(255,123,5,0.18),inset 0 0 16px rgba(255,159,5,0.1);display:flex;align-items:center;justify-content:center;transition:opacity .4s ease;opacity:1;';
       ppBtn.appendChild(ppPill);
 
       var ppCore = document.createElement('div');
@@ -1856,8 +1861,17 @@ heroObs.observe(document.getElementById('hero'));
 
       function setIconPause(){ ppCore.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="#FFB23D"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>'; }
       function setIconPlay(){ ppCore.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="#FFB23D"><polygon points="7,4 21,12 7,20"/></svg>'; }
-      function showBtn(){ ppBtn.style.opacity = '1'; }
-      function hideBtnDelayed(){ clearTimeout(hideTimer); hideTimer = setTimeout(function(){ ppBtn.style.opacity = '0'; }, 1400); }
+      function showBtn(){
+        ppBtn.style.opacity = '1';
+        ppPill.style.opacity = '1';
+      }
+      function hideBtnDelayed(){
+        clearTimeout(hideTimer);
+        hideTimer = setTimeout(function(){
+          // O ícone e glow somem, mas a faixa opaca permanece cobrindo os controles nativos
+          ppPill.style.opacity = '0';
+        }, 1400);
+      }
 
       showBtn();
       hideBtnDelayed();
