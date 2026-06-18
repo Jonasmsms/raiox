@@ -368,7 +368,7 @@ fbq('track','ViewContent',{content_name:'Raio-X Estrategico do Delivery',content
  </div>
  <div style="position:relative;background:var(--dark2);border:2px solid rgba(255,123,5,0.35);overflow:hidden;box-shadow:0 0 60px rgba(255,123,5,0.12),0 0 120px rgba(255,123,5,0.05)">
    <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--r),var(--o),var(--a));box-shadow:0 0 14px rgba(255,123,5,.6)"></div>
-   <div id="ytVSL" style="width:100%;aspect-ratio:16/9;position:relative;overflow:hidden"></div>
+   <div id="ytVSL" style="width:100%;max-width:420px;aspect-ratio:9/16;position:relative;overflow:hidden;margin:0 auto"></div>
  </div>
  <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:10px;font-size:12px;color:var(--muted)">
    <span style="color:#39FF14;font-size:14px">●</span>
@@ -1819,7 +1819,7 @@ heroObs.observe(document.getElementById('hero'));
     },{once:true});
   }
   document.addEventListener('DOMContentLoaded',function(){
-    ytPlayer('ytVSL','yvE1JVF-_TI',false);
+    ytPlayer('ytVSL','yvE1JVF-_TI',true);
     ytPlayer('ytDepo1','zCC1epGv0q8',true);
     ytPlayer('ytDepo2','a-n-u52q1ZI',true);
   });
