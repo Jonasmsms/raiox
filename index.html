@@ -1825,9 +1825,12 @@ heroObs.observe(document.getElementById('hero'));
           playerVars:{
             autoplay:1, controls:0, rel:0, modestbranding:1, playsinline:1,
             disablekb:1, iv_load_policy:3, fs:0, loop: vertical?1:0,
-            playlist: vertical?vid:undefined, origin: location.origin
+            playlist: vertical?vid:undefined
           },
           events:{
+            'onError': function(e){
+              console.error('YT Player Error code:', e.data, 'for video:', vid);
+            },
             'onReady': function(e){
               e.target.playVideo();
               if(vertical){
