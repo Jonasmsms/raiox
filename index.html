@@ -368,7 +368,10 @@ fbq('track','ViewContent',{content_name:'Raio-X Estrategico do Delivery',content
  </div>
  <div style="position:relative;background:var(--dark2);border:2px solid rgba(255,123,5,0.35);overflow:hidden;box-shadow:0 0 60px rgba(255,123,5,0.12),0 0 120px rgba(255,123,5,0.05)">
    <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--r),var(--o),var(--a));box-shadow:0 0 14px rgba(255,123,5,.6)"></div>
-   <div id="ytVSL" style="width:100%;max-width:420px;aspect-ratio:9/16;position:relative;overflow:hidden;margin:0 auto"></div>
+   <div id="ytVSL" style="width:100%;max-width:340px;aspect-ratio:9/16;position:relative;overflow:hidden;margin:0 auto"></div>
+   <div id="vsl-progress-wrap" style="width:100%;max-width:340px;margin:8px auto 0;height:4px;background:rgba(255,255,255,.1);border-radius:2px;overflow:hidden;display:none">
+     <div id="vsl-progress-bar" style="width:0%;height:100%;background:linear-gradient(90deg,var(--r),var(--o),var(--a));box-shadow:0 0 8px rgba(255,123,5,.6);border-radius:2px"></div>
+   </div>
  </div>
  <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:10px;font-size:12px;color:var(--muted)">
    <span style="color:#39FF14;font-size:14px">●</span>
@@ -1818,8 +1821,32 @@ heroObs.observe(document.getElementById('hero'));
       wrap.appendChild(iframe);
     },{once:true});
   }
+
+  function startFakeProgress(){
+    var wrap = document.getElementById('vsl-progress-wrap');
+    var bar = document.getElementById('vsl-progress-bar');
+    if(!wrap || !bar) return;
+    wrap.style.display = 'block';
+    var duration = 17000; // ~17s para sensação de vídeo de 15min carregando rápido
+    var start = null;
+    function easeOutQuart(t){ return 1 - Math.pow(1 - t, 4); }
+    function step(ts){
+      if(!start) start = ts;
+      var elapsed = ts - start;
+      var t = Math.min(elapsed / duration, 1);
+      var eased = easeOutQuart(t);
+      bar.style.width = (eased * 96) + '%'; // para perto de 96%, nunca completa sozinho
+      if(t < 1){
+        requestAnimationFrame(step);
+      }
+    }
+    requestAnimationFrame(step);
+  }
+
   document.addEventListener('DOMContentLoaded',function(){
     ytPlayer('ytVSL','yvE1JVF-_TI',true);
+    var vslEl = document.getElementById('ytVSL');
+    if(vslEl){ vslEl.addEventListener('click', startFakeProgress, {once:true}); }
     ytPlayer('ytDepo1','zCC1epGv0q8',true);
     ytPlayer('ytDepo2','a-n-u52q1ZI',true);
   });
