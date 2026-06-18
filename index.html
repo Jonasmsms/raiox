@@ -1792,134 +1792,87 @@ heroObs.observe(document.getElementById('hero'));
     if(!wrap) return;
     var thumb = 'https://i.ytimg.com/vi/'+vid+'/maxresdefault.jpg';
     wrap.style.cssText += 'cursor:pointer;background:#000;';
+
     var img = document.createElement('img');
     img.src = thumb;
     img.alt = '';
     img.loading = 'lazy';
     img.style.cssText = 'width:100%;height:100%;object-fit:cover;object-position:center;display:block;transition:transform .3s;position:absolute;top:0;left:0;';
     wrap.appendChild(img);
-    var btn = document.createElement('div');
-    btn.style.cssText = 'position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:68px;height:68px;background:rgba(0,0,0,0.72);border-radius:50%;display:flex;align-items:center;justify-content:center;border:3px solid rgba(255,123,5,0.9);box-shadow:0 0 28px rgba(255,123,5,0.55);pointer-events:none;transition:transform .2s;';
-    btn.innerHTML = '<svg width="26" height="26" viewBox="0 0 24 24" fill="#FF9F05"><polygon points="5,3 19,12 5,21"/></svg>';
-    wrap.appendChild(btn);
-    wrap.addEventListener('mouseenter',function(){img.style.transform='scale(1.03)';btn.style.transform='translate(-50%,-50%) scale(1.1)';});
-    wrap.addEventListener('mouseleave',function(){img.style.transform='';btn.style.transform='translate(-50%,-50%)';});
-    wrap.addEventListener('click',function(){
-      wrap.innerHTML='';
-      wrap.style.cursor='default';
 
-      var playerDivId = id+'_player';
-      var playerDiv = document.createElement('div');
-      playerDiv.id = playerDivId;
-      playerDiv.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;overflow:hidden;';
-      wrap.appendChild(playerDiv);
+    var startBtn = document.createElement('div');
+    startBtn.style.cssText = 'position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:68px;height:68px;background:rgba(0,0,0,0.72);border-radius:50%;display:flex;align-items:center;justify-content:center;border:3px solid rgba(255,123,5,0.9);box-shadow:0 0 28px rgba(255,123,5,0.55);pointer-events:none;transition:transform .2s;';
+    startBtn.innerHTML = '<svg width="26" height="26" viewBox="0 0 24 24" fill="#FF9F05"><polygon points="5,3 19,12 5,21"/></svg>';
+    wrap.appendChild(startBtn);
 
-      // Camada bloqueadora SEMPRE acima do player, intercepta todo toque
-      var blocker = document.createElement('div');
-      blocker.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;z-index:9;background:transparent;';
-      wrap.appendChild(blocker);
+    wrap.addEventListener('mouseenter',function(){img.style.transform='scale(1.03)';startBtn.style.transform='translate(-50%,-50%) scale(1.1)';});
+    wrap.addEventListener('mouseleave',function(){img.style.transform='';startBtn.style.transform='translate(-50%,-50%)';});
 
-      function createPlayer(){
-        var ytPlayerObj = new YT.Player(playerDivId, {
-          videoId: vid,
-          playerVars:{
-            autoplay:1, controls:0, rel:0, modestbranding:1, playsinline:1,
-            disablekb:1, iv_load_policy:3, fs:0, loop: vertical?1:0,
-            playlist: vertical?vid:undefined, origin: location.origin
-          },
-          events:{
-            'onReady': function(e){
-              e.target.playVideo();
-              if(vertical){
-                playerDiv.style.cssText += 'position:absolute;top:0;left:0;width:100%;height:100%;';
-              } else {
-                playerDiv.style.cssText += 'position:absolute;top:-25%;left:0;width:100%;height:150%;';
-              }
-            }
-          }
-        });
+    wrap.addEventListener('click', function startClick(){
+      wrap.removeEventListener('click', startClick);
+      wrap.innerHTML = '';
+      wrap.style.cursor = 'default';
 
-        // Botão de play/pause neon flutuante
-        var ppBtn = document.createElement('div');
-        ppBtn.style.cssText = 'position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:10;pointer-events:auto;background:radial-gradient(circle,rgba(255,123,5,0.25) 0%,rgba(255,123,5,0.08) 60%,transparent 80%);opacity:1;transition:opacity .35s ease, transform .35s ease;';
+      // Iframe SEM controles nativos
+      var iframe = document.createElement('iframe');
+      var params = 'autoplay=1&rel=0&modestbranding=1&playsinline=1&controls=0&disablekb=1&iv_load_policy=3&fs=0';
+      if(vertical) params += '&loop=1&playlist='+vid;
+      iframe.src = 'https://www.youtube.com/embed/'+vid+'?'+params;
+      iframe.title = 'video';
+      iframe.setAttribute('frameborder','0');
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+      iframe.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;border:none;pointer-events:none;';
+      wrap.appendChild(iframe);
 
-        var ppGlow1 = document.createElement('div');
-        ppGlow1.style.cssText = 'position:absolute;inset:-14px;border-radius:50%;background:radial-gradient(circle,rgba(255,159,5,0.35),transparent 70%);filter:blur(10px);animation:neonSmoke 2.6s ease-in-out infinite;pointer-events:none;';
-        ppBtn.appendChild(ppGlow1);
+      // Camada transparente clicável por cima de TUDO — captura todo toque
+      var tapLayer = document.createElement('div');
+      tapLayer.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;z-index:5;background:transparent;cursor:pointer;';
+      wrap.appendChild(tapLayer);
 
-        var ppGlow2 = document.createElement('div');
-        ppGlow2.style.cssText = 'position:absolute;inset:-6px;border-radius:50%;border:1.5px solid rgba(255,159,5,0.5);animation:neonRing 2.6s ease-in-out infinite;pointer-events:none;';
-        ppBtn.appendChild(ppGlow2);
+      // Botão de play/pause neon — visível por 1.5s, depois some
+      var ppBtn = document.createElement('div');
+      ppBtn.style.cssText = 'position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:10;pointer-events:none;opacity:1;transition:opacity .35s ease;background:radial-gradient(circle,rgba(255,123,5,0.22) 0%,rgba(255,123,5,0.06) 60%,transparent 80%);';
 
-        var ppCore = document.createElement('div');
-        ppCore.style.cssText = 'position:relative;width:56px;height:56px;border-radius:50%;background:rgba(10,8,4,0.55);backdrop-filter:blur(3px);border:1.5px solid rgba(255,159,5,0.85);box-shadow:0 0 18px rgba(255,123,5,0.55),0 0 36px rgba(255,123,5,0.25),inset 0 0 14px rgba(255,159,5,0.15);display:flex;align-items:center;justify-content:center;z-index:2;transition:transform .2s;';
-        ppCore.innerHTML = '<svg width="22" height="22" viewBox="0 0 24 24" fill="#FFB23D"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>';
-        ppBtn.appendChild(ppCore);
+      var ppCore = document.createElement('div');
+      ppCore.style.cssText = 'width:54px;height:54px;border-radius:50%;background:rgba(10,8,4,0.6);border:1.5px solid rgba(255,159,5,0.85);box-shadow:0 0 16px rgba(255,123,5,0.5),0 0 32px rgba(255,123,5,0.2);display:flex;align-items:center;justify-content:center;';
+      ppCore.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="#FFB23D"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>';
+      ppBtn.appendChild(ppCore);
+      wrap.appendChild(ppBtn);
 
-        if(!document.getElementById('neonPPStyle')){
-          var styleTag = document.createElement('style');
-          styleTag.id = 'neonPPStyle';
-          styleTag.textContent = '@keyframes neonSmoke{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:.95;transform:scale(1.18)}}'+
-            '@keyframes neonRing{0%,100%{opacity:.4;transform:scale(1)}50%{opacity:.9;transform:scale(1.08)}}';
-          document.head.appendChild(styleTag);
-        }
+      var isPlaying = true;
+      var hideTimer = null;
 
-        var isPlaying = true;
-        function hideBtn(){
-          ppBtn.style.opacity = '0';
-          ppBtn.style.transform = 'translate(-50%,-50%) scale(0.8)';
-          ppBtn.style.pointerEvents = 'none';
-        }
-        function showBtn(){
-          ppBtn.style.opacity = '1';
-          ppBtn.style.transform = 'translate(-50%,-50%) scale(1)';
-          ppBtn.style.pointerEvents = 'auto';
-        }
-
-        ppBtn.addEventListener('click', function(e){
-          e.stopPropagation();
-          if(isPlaying){ ytPlayerObj.pauseVideo(); } else { ytPlayerObj.playVideo(); }
-          isPlaying = !isPlaying;
-          ppCore.innerHTML = isPlaying
-            ? '<svg width="22" height="22" viewBox="0 0 24 24" fill="#FFB23D"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>'
-            : '<svg width="22" height="22" viewBox="0 0 24 24" fill="#FFB23D"><polygon points="7,4 21,12 7,20"/></svg>';
-          ppCore.style.transform = 'scale(0.88)';
-          setTimeout(function(){ ppCore.style.transform = 'scale(1)'; }, 150);
-          if(isPlaying){ setTimeout(hideBtn, 400); } else { showBtn(); }
-        });
-
-        blocker.addEventListener('click', function(){
-          if(isPlaying){
-            showBtn();
-            clearTimeout(wrap._hideTimer);
-            wrap._hideTimer = setTimeout(hideBtn, 2000);
-          }
-        });
-
-        wrap.appendChild(ppBtn);
-        setTimeout(hideBtn, 1200);
-
-        if(typeof onPlay === 'function') onPlay();
+      function setIconPause(){
+        ppCore.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="#FFB23D"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>';
+      }
+      function setIconPlay(){
+        ppCore.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="#FFB23D"><polygon points="7,4 21,12 7,20"/></svg>';
+      }
+      function showBtn(){
+        ppBtn.style.opacity = '1';
+      }
+      function hideBtnDelayed(){
+        clearTimeout(hideTimer);
+        hideTimer = setTimeout(function(){ ppBtn.style.opacity = '0'; }, 1400);
       }
 
-      // Carrega a API do YouTube uma única vez
-      if(window.YT && window.YT.Player){
-        createPlayer();
-      } else {
-        window._ytQueue = window._ytQueue || [];
-        window._ytQueue.push(createPlayer);
-        if(!window._ytApiLoading){
-          window._ytApiLoading = true;
-          var tag = document.createElement('script');
-          tag.src = 'https://www.youtube.com/iframe_api';
-          document.head.appendChild(tag);
-          window.onYouTubeIframeAPIReady = function(){
-            window._ytQueue.forEach(function(fn){ fn(); });
-            window._ytQueue = [];
-          };
-        }
-      }
-    },{once:true});
+      // Mostra o botão e agenda esconder de novo
+      showBtn();
+      hideBtnDelayed();
+
+      tapLayer.addEventListener('click', function(){
+        var cmd = isPlaying ? 'pauseVideo' : 'playVideo';
+        try{
+          iframe.contentWindow.postMessage(JSON.stringify({event:'command',func:cmd,args:[]}), '*');
+        }catch(e){}
+        isPlaying = !isPlaying;
+        if(isPlaying){ setIconPause(); } else { setIconPlay(); clearTimeout(hideTimer); }
+        showBtn();
+        if(isPlaying){ hideBtnDelayed(); }
+      });
+
+      if(typeof onPlay === 'function') onPlay();
+    });
   }
 
     document.addEventListener('DOMContentLoaded',function(){
