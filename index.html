@@ -1,0 +1,1829 @@
+<!DOCTYPE html>
+<html lang="pt-BR" style="-webkit-overflow-scrolling:touch;overscroll-behavior:none">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<title>Raio-X Delivery</title>
+<noscript></noscript>
+
+<style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{-webkit-text-size-adjust:100%;text-size-adjust:100%}body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;overflow-x:hidden;font-family:'Barlow',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:16px;line-height:1.65;color:#C4B8D4;background:#08060E}:root{--o:#FF7B05;--a:#FF9F05;--r:#FF2A1A;--dark:#08060E;--dark2:#0D0A18;--surf:#130F20;--surf2:#1A1530;--text:#FFFFFF;--sub:#C8C0D8;--muted:#8B829C;--grad:linear-gradient(110deg,#FF7B05 0%,#FF9F05 100%);--gradR:linear-gradient(110deg,#FF2A1A 0%,#FF6B05 100%);--glow:0 0 20px rgba(255,123,5,0.7),0 0 60px rgba(255,123,5,0.3);--glowR:0 0 20px rgba(255,42,26,0.7),0 0 50px rgba(255,42,26,0.25);--glowS:0 0 10px rgba(255,123,5,0.5);}html{scroll-behavior:smooth}body{background:var(--dark);color:var(--text);font-family:'Barlow',sans-serif;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}body::after{content:none}body::before{content:none}.display{font-family:'Bebas Neue',sans-serif;letter-spacing:0.04em;line-height:0.93;color:var(--text);text-rendering:geometricPrecision;}.accent{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 12px rgba(255,123,5,0.5));}.accent-r{background:var(--gradR);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 12px rgba(255,42,26,0.5));}.glow-orange{color:var(--o);text-shadow:var(--glow)}.glow-red{color:var(--r);text-shadow:var(--glowR)}.tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--o);background:rgba(255,123,5,0.09);border:1px solid rgba(255,123,5,0.28);padding:6px 16px;margin-bottom:28px;text-shadow:var(--glowS);box-shadow:0 0 20px rgba(255,123,5,0.06);}.tag .pulse{width:7px;height:7px;border-radius:50%;background:var(--r);box-shadow:var(--glowR);animation:blink 1.1s ease-in-out infinite;}@keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.1;transform:scale(0.5)}}section{padding:100px 0;position:relative;z-index:5}.w{max-width:760px;margin:0 auto;padding:0 20px}.w-wide{max-width:1060px;margin:0 auto;padding:0 20px}.sep{height:40px;position:relative;z-index:5;background:transparent;box-shadow:none;}.sep-short{width:48px;height:2px;background:rgba(255,123,5,0.25);margin:32px 0;box-shadow:none}.lbl{font-size:11px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--o);margin-bottom:20px;display:flex;align-items:center;gap:10px;text-shadow:0 0 12px rgba(255,123,5,0.6);}.lbl::before{content:'//';opacity:0.45;letter-spacing:0;font-size:13px}.al{display:flex;align-items:flex-start;gap:14px;margin-bottom:14px;font-size:17px;color:var(--sub);line-height:1.5}.al::before{content:'▸';color:var(--o);font-size:17px;flex-shrink:0;margin-top:2px;text-shadow:var(--glow);}.al strong{color:var(--text)}#hero{min-height:100vh;min-height:-webkit-fill-available;display:flex;align-items:center;padding:120px 0 80px;overflow:hidden;}#hero-canvas{position:absolute;inset:0;z-index:1}.hero-inner{position:relative;z-index:2}.hero-h1{font-size:clamp(58px,12vw,104px);margin-bottom:28px}.hero-body{font-size:clamp(18px,2.5vw,22px);color:var(--sub);max-width:560px;margin-bottom:20px;line-height:1.65;font-weight:400;}.hero-strong{font-size:clamp(20px,2.8vw,26px);font-weight:700;color:var(--text);margin-bottom:48px;}.kpi-strip{display:flex;gap:0;margin-top:52px;border:1px solid rgba(255,123,5,0.2);background:rgba(255,123,5,0.04);box-shadow:0 0 40px rgba(255,123,5,0.07);}.kpi{flex:1;padding:20px 24px;border-right:1px solid rgba(255,123,5,0.15);position:relative;}.kpi:last-child{border-right:none}.kpi-val{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,4vw,40px);letter-spacing:0.04em;line-height:1;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 8px rgba(255,123,5,0.4));}.kpi-lbl{font-size:11px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-top:4px}#ira{background:var(--surf);padding:90px 0}#ira::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(255,42,26,0.06),transparent 70%);pointer-events:none;}.comp-vs{display:grid;grid-template-columns:1fr auto 1fr;gap:0;align-items:stretch;margin:40px 0;border:1px solid rgba(255,123,5,0.15);}.comp-col{padding:32px 24px;display:flex;flex-direction:column;gap:10px}.comp-col.them{background:rgba(255,42,26,0.05)}.comp-col.you{background:rgba(255,123,5,0.05)}.comp-vs-mid{display:flex;align-items:center;justify-content:center;padding:24px 16px;background:rgba(255,123,5,0.08);border-left:1px solid rgba(255,123,5,0.15);border-right:1px solid rgba(255,123,5,0.15);}.vs-label{font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:0.1em;color:var(--o);text-shadow:var(--glow);writing-mode:vertical-lr;transform:rotate(180deg);}.comp-title{font-size:12px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:8px;}.comp-title.red{color:var(--r);text-shadow:var(--glowR)}.comp-title.org{color:var(--o);text-shadow:var(--glowS)}.comp-row{display:flex;align-items:center;gap:10px;font-size:15px;line-height:1.4;}.comp-row .ic{font-size:16px;flex-shrink:0}#case{overflow:hidden}#case::before{content:'';position:absolute;top:-80px;left:-200px;width:500px;height:500px;background:radial-gradient(circle,rgba(255,42,26,0.07),transparent 70%);pointer-events:none;}.big-numbers{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin:40px 0;}.bn-card{background:var(--surf);padding:32px 28px;position:relative;overflow:hidden;}.bn-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad);box-shadow:var(--glow);}.bn-card::after{content:'';position:absolute;bottom:-30px;right:-30px;width:100px;height:100px;background:radial-gradient(circle,rgba(255,123,5,0.1),transparent 70%);}.bn-val{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,11vw,88px);line-height:1;letter-spacing:0.02em;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 15px rgba(255,123,5,0.4));}.bn-lbl{font-size:12px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-top:6px}.bn-tag{display:inline-flex;align-items:center;gap:5px;margin-top:12px;background:rgba(57,255,20,0.08);border:1px solid rgba(57,255,20,0.22);color:#39FF14;font-size:11px;font-weight:700;letter-spacing:0.1em;padding:3px 10px;text-shadow:0 0 8px rgba(57,255,20,0.5);}.chart-box{background:var(--surf);border:1px solid rgba(255,123,5,0.15);padding:24px 24px 16px;margin:36px 0;position:relative;}.chart-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--o),var(--a),transparent 80%);box-shadow:0 0 10px rgba(255,123,5,0.4);}.chart-lbl{font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--o);margin-bottom:14px;text-shadow:0 0 8px rgba(255,123,5,0.4);}#dor{background:var(--surf)}.pain-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin:36px 0;}.pain-card{background:var(--dark2);padding:28px 24px;border-left:3px solid transparent;position:relative;overflow:hidden;transition:border-color 0.3s,background 0.3s;cursor:default;}.pain-card:hover{border-left-color:var(--o);background:rgba(255,123,5,0.04)}.pain-card.red-b{border-left:3px solid rgba(255,42,26,0.5)}.pain-card.red-b:hover{border-left-color:var(--r)}.pain-ico{font-size:32px;margin-bottom:14px;display:block}.pain-title{font-size:15px;font-weight:700;color:var(--text);margin-bottom:6px;line-height:1.3;}.pain-desc{font-size:13px;color:var(--muted);line-height:1.5}.pain-card::after{content:'';position:absolute;bottom:-20px;right:-20px;width:80px;height:80px;border-radius:50%;background:radial-gradient(circle,rgba(255,123,5,0.07),transparent 70%);}.q-block{position:relative;margin:40px 0;padding:36px 40px;background:var(--surf2);border-left:4px solid rgba(255,123,5,0.5);box-shadow:0 0 40px rgba(255,123,5,0.04),inset 0 0 60px rgba(255,123,5,0.02);}.q-block::before{content:'"';position:absolute;top:-12px;left:28px;font-family:'Bebas Neue',sans-serif;font-size:100px;line-height:1;color:var(--o);opacity:0.1;}.q-text{font-size:clamp(18px,2.5vw,22px);font-style:italic;color:var(--sub);line-height:1.6}.q-text strong{color:var(--text);font-style:normal}#diag{background:var(--dark2)}.bc-wrap{margin:32px 0;display:flex;flex-direction:column;gap:20px}.bc-item{}.bc-head{display:flex;justify-content:space-between;margin-bottom:8px;align-items:baseline}.bc-name{font-size:14px;font-weight:600;color:var(--text)}.bc-change{font-size:12px;font-weight:700;color:#39FF14;text-shadow:0 0 8px rgba(57,255,20,0.4)}.bc-bars{display:flex;flex-direction:column;gap:5px}.bc-row{display:flex;align-items:center;gap:10px}.bc-label{font-size:10px;font-weight:700;letter-spacing:0.1em;width:52px;flex-shrink:0}.bc-track{flex:1;height:20px;background:rgba(255,255,255,0.04);overflow:hidden}.bc-fill{height:100%;width:0;transition:width 1.5s cubic-bezier(0.16,1,0.3,1)}#ajustes{overflow:hidden}#ajustes::before{content:'';position:absolute;top:0;right:0;width:400px;height:400px;background:radial-gradient(circle,rgba(255,123,5,0.05),transparent 70%);pointer-events:none;}.steps{display:flex;flex-direction:column;gap:0;margin:40px 0}.step{display:grid;grid-template-columns:80px 1fr;gap:0;border-bottom:1px solid rgba(255,255,255,0.05);}.step:last-child{border-bottom:none}.step-num{display:flex;align-items:flex-start;justify-content:center;padding:28px 0;font-family:'Bebas Neue',sans-serif;font-size:72px;line-height:1;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 12px rgba(255,123,5,0.4));}.step-body{padding:28px 24px;border-left:1px solid rgba(255,123,5,0.12)}.step-title{font-size:22px;font-weight:700;color:var(--text);margin-bottom:6px}.step-desc{font-size:15px;color:var(--sub);line-height:1.6}.step-badge{display:inline-flex;align-items:center;gap:5px;margin-top:10px;background:rgba(255,123,5,0.1);border:1px solid rgba(255,123,5,0.25);color:var(--o);font-size:11px;font-weight:700;letter-spacing:0.1em;padding:3px 10px;text-shadow:var(--glowS);}.radar-frame{background:var(--dark2);border:1px solid rgba(255,123,5,0.18);padding:32px;margin:36px 0;position:relative;box-shadow:0 0 40px rgba(255,123,5,0.05);}.radar-frame::before{content:'MAPA DE VULNERABILIDADES';position:absolute;top:-10px;left:20px;background:var(--dark2);padding:0 10px;font-size:10px;font-weight:700;letter-spacing:0.2em;color:var(--o);text-shadow:var(--glowS);}.radar-legend{display:flex;gap:24px;justify-content:center;margin-top:16px}.rl{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted)}.rl-dot{width:12px;height:3px}#perda{background:var(--dark);border-top:1px solid rgba(255,42,26,0.2);border-bottom:1px solid rgba(255,42,26,0.2);}#perda::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 50%,rgba(255,42,26,0.05),transparent 70%);pointer-events:none;}.perda-question{font-size:clamp(22px,3.5vw,32px);font-weight:700;line-height:1.4;color:var(--text);margin:28px 0;}.perda-highlight{display:inline;background:var(--gradR);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 8px rgba(255,42,26,0.4));}.money-drain{background:var(--surf);border:1px solid rgba(255,42,26,0.25);padding:28px;margin:32px 0;text-align:center;box-shadow:0 0 30px rgba(255,42,26,0.06);}.drain-label{font-size:12px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}.drain-val{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,10vw,80px);line-height:1;letter-spacing:0.02em;background:var(--gradR);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 20px rgba(255,42,26,0.4));}.drain-sub{font-size:13px;color:var(--muted);margin-top:8px}#raiox{overflow:hidden}.raiox-stamp{display:none}.raiox-img-wrap{width:100%;border:1px solid rgba(255,123,5,0.18);overflow:hidden;margin-bottom:40px;position:relative;box-shadow:0 0 60px rgba(255,123,5,0.12),0 0 120px rgba(255,123,5,0.05);}.raiox-img-wrap::before{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;box-shadow:inset 0 0 0 1px rgba(255,123,5,0.15);}.raiox-img{display:block;width:100%;height:auto;}.scan-visual{background:rgba(13,10,24,0.6);border:none;box-shadow:0 0 0 1px rgba(255,123,5,0.08),0 0 30px rgba(255,123,5,0.06),inset 0 0 40px rgba(255,123,5,0.02);padding:32px;margin:36px 0;position:relative;overflow:hidden;}.scan-line-anim{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--o),var(--a),transparent);box-shadow:0 0 12px rgba(255,123,5,0.6);animation:scan 3s ease-in-out infinite;}@keyframes scan{0%{top:0;opacity:1}100%{top:100%;opacity:0.3}}.scan-items{display:flex;flex-direction:column;gap:12px}.scan-item{display:flex;align-items:center;gap:14px;padding:14px 18px;background:rgba(13,10,24,0.8);border:none;box-shadow:0 0 0 1px rgba(255,123,5,0.07),0 0 18px rgba(255,123,5,0.04);transition:box-shadow 0.3s;}.scan-item:hover{box-shadow:0 0 0 1px rgba(255,123,5,0.2),0 0 24px rgba(255,123,5,0.08);}.si-txt{flex:1;font-size:16px;font-weight:600;color:var(--text)}.si-status{font-size:10px;font-weight:700;letter-spacing:0.14em;color:var(--o);text-shadow:var(--glowS);display:flex;align-items:center;gap:5px;}.si-status::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--o);box-shadow:0 0 8px rgba(255,123,5,0.8);animation:blink 1.5s ease-in-out infinite;}.analysis-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px}.ag{padding:18px 20px;background:rgba(13,10,24,0.7);border:none;box-shadow:0 0 0 1px rgba(255,123,5,0.06),0 0 16px rgba(255,123,5,0.03);font-size:15px;font-weight:600;display:flex;align-items:center;gap:10px;transition:box-shadow 0.3s,background 0.3s;cursor:default;}.ag:hover{box-shadow:0 0 0 1px rgba(255,123,5,0.2),0 0 22px rgba(255,123,5,0.08);background:rgba(255,123,5,0.05);}.ag .ag-ic{font-size:20px}#preco{text-align:center;overflow:hidden}#preco .lbl{justify-content:center}#preco .checklist{text-align:left}#preco::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:700px;background:radial-gradient(circle,rgba(255,123,5,0.07),transparent 70%);pointer-events:none;}.preco-de{font-size:20px;color:var(--muted);text-decoration:line-through;text-decoration-color:rgba(255,42,26,0.6);margin-bottom:8px;}.preco-por{font-family:'Bebas Neue',sans-serif;font-size:clamp(96px,22vw,160px);line-height:0.88;letter-spacing:0.02em;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 30px rgba(255,123,5,0.45));}.preco-lbl{font-size:12px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin:12px 0 48px;}@keyframes cta-pulse{0%,100%{box-shadow:0 0 16px rgba(255,123,5,0.4),0 0 40px rgba(255,123,5,0.15);border-color:#FF7B05}50%{box-shadow:0 0 40px rgba(255,123,5,0.75),0 0 80px rgba(255,123,5,0.3);border-color:#FF9F05}}@keyframes cta-pulse-wpp{0%,100%{box-shadow:0 0 20px rgba(37,211,102,0.55),0 0 50px rgba(37,211,102,0.25)}50%{box-shadow:0 0 40px rgba(37,211,102,0.9),0 0 80px rgba(37,211,102,0.45),0 0 120px rgba(37,211,102,0.15)}}@keyframes cta-pulse-org{0%,100%{box-shadow:0 0 16px rgba(255,123,5,0.5),0 0 40px rgba(255,123,5,0.2)}50%{box-shadow:0 0 30px rgba(255,123,5,0.85),0 0 70px rgba(255,123,5,0.35)}}.cta{touch-action:manipulation;display:inline-flex;align-items:center;justify-content:center;gap:14px;background:#0D0A18;color:#FF9F05;border:2px solid #FF7B05;font-family:'Barlow',sans-serif;font-size:clamp(15px,2vw,18px);font-weight:900;text-transform:uppercase;letter-spacing:0.08em;padding:22px 48px;cursor:pointer;text-decoration:none;position:relative;overflow:hidden;border-radius:12px;-webkit-animation:cta-pulse 2.5s ease-in-out infinite;animation:cta-pulse 2.5s ease-in-out infinite;-webkit-transition:transform 0.15s,background 0.2s;transition:transform 0.15s,background 0.2s;-webkit-tap-highlight-color:transparent;}.cta::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,rgba(255,123,5,0.12) 0%,transparent 60%);pointer-events:none;}.cta::after{content:'';position:absolute;top:-100%;left:-60%;width:40%;height:300%;background:rgba(255,255,255,0.06);transform:skewX(-20deg);animation:sheen 4s ease-in-out infinite;}@keyframes sheen{0%,65%{left:-60%}100%{left:160%}}.cta:hover{transform:translateY(-3px);background:rgba(255,123,5,0.08);animation:none;box-shadow:0 0 50px rgba(255,123,5,0.5),0 0 100px rgba(255,123,5,0.2)}.cta:active{transform:translateY(0)}.cta-wrap{margin:0 auto}.cta-note{font-size:12px;font-weight:600;letter-spacing:0.1em;color:var(--muted);margin-top:18px;text-align:center}.checklist{display:flex;flex-direction:column;gap:10px;margin:32px 0;text-align:left}.cl-item{display:flex;align-items:center;gap:14px;font-size:16px;font-weight:500;color:var(--sub);}.cl-check{width:22px;height:22px;border-radius:50%;flex-shrink:0;background:rgba(57,255,20,0.1);border:1px solid rgba(57,255,20,0.3);display:flex;align-items:center;justify-content:center;font-size:12px;color:#39FF14;text-shadow:0 0 8px rgba(57,255,20,0.6);}#pressao{background:var(--dark);border-top:2px solid rgba(255,42,26,0.3);box-shadow:0 -8px 30px rgba(255,42,26,0.08);}.pressao-list{display:flex;flex-direction:column;gap:10px;margin:24px 0;}.pi{display:flex;align-items:flex-start;gap:14px;font-size:17px;color:var(--sub);}.pi::before{content:'•';color:var(--r);font-size:22px;flex-shrink:0;line-height:1.1;text-shadow:var(--glowR);}#fech{text-align:center;padding:120px 0;overflow:hidden}#fech::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:900px;height:600px;background:radial-gradient(ellipse,rgba(255,123,5,0.07),transparent 70%);pointer-events:none;}.fech-h{font-size:clamp(40px,9vw,76px);margin-bottom:24px}.fu{opacity:1;transform:none;transition:none}.fu.v{opacity:1;transform:none}.fi{opacity:0;transition:opacity 0.9s ease}.fi.v{opacity:1}@keyframes ico-pulseR{0%,100%{filter:drop-shadow(0 0 8px rgba(255,42,26,0.6))}50%{filter:drop-shadow(0 0 20px rgba(255,42,26,1)) drop-shadow(0 0 40px rgba(255,42,26,0.5))}}@media(max-width:767px){.hero-layout{grid-template-columns:1fr;grid-template-rows:auto auto;min-height:auto;}.hero-img-col{height:65vw;max-height:320px;}.hero-img{object-position:center 15%}.hero-copy-col{padding:36px 20px 48px;}section{padding:44px 0}.w,.w-wide{padding:0 16px}#fech{padding:72px 0}.hero-h1{font-size:clamp(38px,11vw,60px);margin-bottom:16px}.hero-body{font-size:15px;margin-bottom:14px}.hero-strong{font-size:16px;margin-bottom:24px}.kpi-strip{flex-direction:column;margin-top:36px}.kpi{border-right:none;border-bottom:1px solid rgba(255,123,5,0.12);padding:16px 20px;display:flex;align-items:center;gap:16px;}.kpi:last-child{border-bottom:none}.kpi-val{font-size:28px}.kpi-lbl{font-size:10px;margin-top:0}.comp-vs{grid-template-columns:1fr;grid-template-rows:auto;}.comp-vs-mid{padding:12px 20px;border-left:none;border-right:none;border-top:1px solid rgba(255,123,5,0.15);border-bottom:1px solid rgba(255,123,5,0.15);}.vs-label{writing-mode:horizontal-tb;transform:none;font-size:22px}.comp-col{padding:20px 18px;gap:8px}.comp-row{font-size:14px}.big-numbers{grid-template-columns:1fr 1fr;gap:2px}.bn-card{padding:20px 16px}.bn-val{font-size:clamp(36px,10vw,56px)}.bn-lbl{font-size:10px}.chart-box{padding:16px 14px 12px}.pain-grid{grid-template-columns:1fr;gap:2px;margin:24px 0}.pain-card{padding:20px 18px}.pain-ico{font-size:26px;margin-bottom:10px}.pain-title{font-size:14px}.pain-desc{font-size:12px}.q-block{padding:24px 20px;margin:28px 0}.bc-item{margin-bottom:14px}.bc-name{font-size:13px}.bc-track{height:16px}.step{grid-template-columns:56px 1fr}.step-num{font-size:52px;padding:20px 0}.step-body{padding:20px 16px}.step-title{font-size:17px}.step-desc{font-size:13px}#pilaresGrid{gap:2px !important}#pilaresGrid > div > div:first-child{width:64px !important}.scan-visual{padding:20px 16px;margin:24px 0}.scan-item{padding:12px 14px;gap:10px}.si-txt{font-size:14px}.si-status{font-size:9px}#hero .fu a[href="#raiox"],#hero .fu a[href*="wa.me"]{width:100%;justify-content:center;font-size:13px;padding:12px 16px;}#erlonGrid{grid-template-columns:1fr !important}#erlonGrid > div:first-child{min-height:260px !important}#depoGrid{grid-template-columns:1fr !important}#depoVideoGrid{grid-template-columns:1fr !important}#scorecardBars{grid-template-columns:repeat(3,1fr) !important;gap:4px !important}.analysis-grid{grid-template-columns:1fr 1fr;gap:6px;margin-top:12px}.ag{padding:14px 14px;font-size:13px}.ag .ag-ic{font-size:17px}.preco-de{font-size:16px}.preco-por{font-size:clamp(80px,22vw,120px)}.preco-lbl{font-size:10px;margin:8px 0 32px}.checklist{max-width:100% !important;margin:24px 0}.cl-item{font-size:14px}.cta{touch-action:manipulation;width:auto !important;max-width:340px;margin-left:auto;margin-right:auto;display:flex !important;padding:16px 28px !important;font-size:14px !important;gap:10px !important;border-radius:12px !important;-webkit-clip-path:none !important;clip-path:none !important;flex-direction:row !important;letter-spacing:.05em !important;box-shadow:0 4px 20px rgba(255,123,5,0.4) !important;}.cta-wrap{display:flex !important;flex-direction:column !important;align-items:center !important;}.pi{font-size:15px}.perda-question{font-size:clamp(18px,5vw,24px);margin:20px 0}.money-drain{padding:20px 16px}.drain-val{font-size:clamp(44px,13vw,64px)}.sep-short{margin:24px 0}.fech-h{font-size:clamp(34px,10vw,52px)}}@media(max-width:380px){.big-numbers{grid-template-columns:1fr !important}#pilaresGrid{grid-template-columns:1fr !important}.kpi-val{font-size:24px !important}section{padding:36px 0}.w,.w-wide{padding:0 14px}}@media(min-width:480px) and (max-width:767px){.pain-grid{grid-template-columns:1fr 1fr}#pilaresGrid{grid-template-columns:1fr 1fr !important}.big-numbers{grid-template-columns:1fr 1fr}#objecoes > .w > div > div{padding:18px 16px}}@keyframes float-y{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}@keyframes holo-shift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}@keyframes ico-pulse{0%,100%{filter:drop-shadow(0 0 8px rgba(255,123,5,0.6)) drop-shadow(0 0 20px rgba(255,123,5,0.3))}50%{filter:drop-shadow(0 0 20px rgba(255,159,5,1)) drop-shadow(0 0 40px rgba(255,123,5,0.6))}}@keyframes ico-pulse-r{0%,100%{filter:drop-shadow(0 0 8px rgba(255,42,26,0.6))}50%{filter:drop-shadow(0 0 20px rgba(255,42,26,1)) drop-shadow(0 0 40px rgba(255,42,26,0.5))}}@keyframes scanH{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}.holo-surf{background:linear-gradient(135deg,rgba(255,123,5,0.08) 0%,rgba(255,159,5,0.04) 30%,rgba(255,42,26,0.05) 60%,rgba(255,123,5,0.08) 100% );background-size:300% 300%;-webkit-border:1px solid rgba(255,123,5,0.2);position:relative;overflow:hidden;}.holo-surf::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.04),transparent);pointer-events:none;}.clip-diag-tl{-webkit-clip-path:polygon(16px 0,100% 0,100% 100%,0 100%,0 16px);clip-path:polygon(16px 0,100% 0,100% 100%,0 100%,0 16px)}.clip-diag-br{-webkit-clip-path:polygon(0 0,100% 0,calc(100% - 16px);clip-path:polygon(0 0,100% 0,calc(100% - 16px) 100%,0 100%)}.clip-diag-both{-webkit-clip-path:polygon(16px 0,100% 0,calc(100% - 16px);clip-path:polygon(16px 0,100% 0,calc(100% - 16px) 100%,0 100%)}.ico-glow{display:inline-flex;align-items:center;justify-content:center;width:52px;height:52px;flex-shrink:0;background:radial-gradient(circle,rgba(255,123,5,0.18) 0%,rgba(255,123,5,0) 70%);border-radius:50%;font-size:26px;animation:ico-pulse 2.5s ease-in-out infinite;position:relative;}.ico-glow::before{content:'';position:absolute;inset:0;border-radius:50%;border:1px solid rgba(255,123,5,0.3);}.ico-glow.red{background:radial-gradient(circle,rgba(255,42,26,0.18) 0%,rgba(255,42,26,0) 70%);animation:ico-pulse-r 2.5s ease-in-out infinite;}.ico-glow.red::before{border-color:rgba(255,42,26,0.3)}.lbl{font-size:11px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--o);margin-bottom:20px;display:flex;align-items:center;gap:10px;text-shadow:0 0 12px rgba(255,123,5,0.6);position:relative;}.lbl::after{content:'';flex:1;height:1px;max-width:60px;background:linear-gradient(90deg,rgba(255,123,5,0.5),transparent);}.kpi-strip{display:flex;gap:0;margin-top:52px;background:linear-gradient(135deg,rgba(255,123,5,0.07) 0%,rgba(255,42,26,0.04) 100%);border:1px solid rgba(255,123,5,0.2);box-shadow:0 0 40px rgba(255,123,5,0.08);-webkit-clip-path:polygon(12px 0,100% 0,calc(100% - 12px);clip-path:polygon(12px 0,100% 0,calc(100% - 12px) 100%,0 100%);overflow:hidden;}.kpi{position:relative;transition:background 0.3s}.kpi:hover{background:rgba(255,123,5,0.07)}.kpi::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--grad);opacity:0;transition:opacity 0.3s;box-shadow:var(--glow);}.kpi:hover::after{opacity:1}.comp-vs{display:grid;grid-template-columns:1fr auto 1fr;gap:0;align-items:stretch;margin:40px 0;background:linear-gradient(135deg,rgba(255,42,26,0.06) 0%,rgba(255,123,5,0.03) 100%);border:1px solid rgba(255,123,5,0.18);-webkit-clip-path:polygon(0 0,100% 0,calc(100% - 20px);clip-path:polygon(0 0,100% 0,calc(100% - 20px) 100%,20px 100%);overflow:hidden;}.comp-col.them{background:rgba(255,42,26,0.06)}.comp-col.you{background:rgba(255,123,5,0.06)}.bn-card{background:linear-gradient(135deg,rgba(255,123,5,0.09) 0%,rgba(255,42,26,0.04) 100%);border:1px solid rgba(255,123,5,0.2);-webkit-clip-path:polygon(0 0,calc(100% - 20px);clip-path:polygon(0 0,calc(100% - 20px) 0,100% 20px,100% 100%,0 100%);transition:box-shadow 0.3s,transform 0.3s;}.bn-card:hover{transform:translateY(-4px);box-shadow:0 8px 40px rgba(255,123,5,0.2),0 0 80px rgba(255,123,5,0.08);}.pain-card{background:linear-gradient(135deg,rgba(255,123,5,0.07) 0%,rgba(13,10,24,0.9) 60%);border:1px solid rgba(255,123,5,0.12);border-left:none;-webkit-clip-path:polygon(0 0,100% 0,100% calc(100% - 16px);clip-path:polygon(0 0,100% 0,100% calc(100% - 16px),calc(100% - 16px) 100%,0 100%);transition:box-shadow 0.3s,transform 0.3s,outline 0.2s;user-select:none;position:relative;overflow:hidden;}.pain-card::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--o),rgba(255,123,5,0));}.pain-card.red-b::before{background:linear-gradient(180deg,var(--r),rgba(255,42,26,0))}.pain-card:hover{transform:translateY(-3px);box-shadow:0 6px 30px rgba(255,123,5,0.15);}.pain-ico{font-size:36px;margin-bottom:14px;display:block;}.pain-card.red-b .pain-ico{animation:ico-pulse-r 3s ease-in-out infinite}.q-block{background:linear-gradient(135deg,rgba(255,123,5,0.07) 0%,rgba(26,21,48,0.95) 100%);border:none;border-left:4px solid var(--o);box-shadow:0 0 40px rgba(255,123,5,0.06),inset 0 0 60px rgba(255,123,5,0.02);-webkit-clip-path:polygon(0 0,100% 0,calc(100% - 24px);clip-path:polygon(0 0,100% 0,calc(100% - 24px) 100%,0 100%);}.bc-track{height:22px;background:rgba(255,255,255,0.04);-webkit-clip-path:polygon(6px 0,100% 0,calc(100% - 6px);clip-path:polygon(6px 0,100% 0,calc(100% - 6px) 100%,0 100%);overflow:hidden;}.bc-fill{height:100%;-webkit-clip-path:polygon(6px 0,100% 0,calc(100% - 6px);clip-path:polygon(6px 0,100% 0,calc(100% - 6px) 100%,0 100%);position:relative;}.bc-fill::after{content:'';position:absolute;top:0;right:0;bottom:0;width:30%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.18));}.step{border-bottom:1px solid rgba(255,123,5,0.08);transition:background 0.3s;position:relative;}.step:hover{background:rgba(255,123,5,0.03)}.step::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(180deg,rgba(255,123,5,0.5),rgba(255,123,5,0));}.step-badge{display:inline-flex;align-items:center;gap:6px;margin-top:10px;background:rgba(255,123,5,0.1);border:1px solid rgba(255,123,5,0.25);color:var(--o);font-size:11px;font-weight:700;letter-spacing:0.1em;padding:4px 12px;text-shadow:var(--glowS);-webkit-clip-path:polygon(8px 0,100% 0,calc(100% - 8px);clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%);}.ag{background:linear-gradient(135deg,rgba(255,123,5,0.06) 0%,rgba(13,10,24,0.9) 100%);border:none;box-shadow:0 0 0 1px rgba(255,123,5,0.06),0 0 20px rgba(255,123,5,0.04);-webkit-clip-path:polygon(10px 0,100% 0,calc(100% - 10px);clip-path:polygon(10px 0,100% 0,calc(100% - 10px) 100%,0 100%);transition:box-shadow 0.3s,transform 0.2s;}.ag:hover{transform:translateY(-2px);box-shadow:0 4px 20px rgba(255,123,5,0.15);background:rgba(255,123,5,0.1);}.ag .ag-ic{font-size:22px;filter:drop-shadow(0 0 6px rgba(255,123,5,0.7));}#verdictBar{background:linear-gradient(135deg,rgba(255,42,26,0.08) 0%,rgba(13,10,24,0.95) 100%);-webkit-clip-path:polygon(0 0,calc(100% - 20px);clip-path:polygon(0 0,calc(100% - 20px) 0,100% 20px,100% 100%,20px 100%,0 calc(100% - 20px));}.money-drain{background:linear-gradient(135deg,rgba(255,42,26,0.1) 0%,rgba(13,10,24,0.95) 100%);border:1px solid rgba(255,42,26,0.25);-webkit-clip-path:polygon(0 0,calc(100% - 20px);clip-path:polygon(0 0,calc(100% - 20px) 0,100% 20px,100% 100%,0 100%);box-shadow:0 0 40px rgba(255,42,26,0.08);}.raiox-img-wrap{border-radius:0;-webkit-clip-path:polygon(0 0,calc(100% - 24px);clip-path:polygon(0 0,calc(100% - 24px) 0,100% 24px,100% 100%,24px 100%,0 calc(100% - 24px));box-shadow:0 0 60px rgba(255,123,5,0.15),0 0 120px rgba(255,123,5,0.06);border:1px solid rgba(255,123,5,0.22);overflow:hidden;position:relative;}.raiox-img-wrap::after{content:'';position:absolute;top:0;left:-100%;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.04),transparent);pointer-events:none;z-index:1;}.cl-item{background:rgba(57,255,20,0.03);border:1px solid rgba(57,255,20,0.1);padding:10px 16px;-webkit-clip-path:polygon(8px 0,100% 0,calc(100% - 8px);clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%);transition:background 0.3s;}.cl-item:hover{background:rgba(57,255,20,0.06)}.sep{height:40px;background:transparent;position:relative;}.sep::before{content:'';}.pi{background:rgba(255,42,26,0.04);border:1px solid rgba(255,42,26,0.1);padding:12px 16px;-webkit-clip-path:polygon(0 0,100% 0,calc(100% - 10px);clip-path:polygon(0 0,100% 0,calc(100% - 10px) 100%,0 100%);transition:background 0.3s;overflow:visible;word-break:break-word;}.pi:hover{background:rgba(255,42,26,0.07)}#ira{background:linear-gradient(135deg,rgba(19,15,32,0.98) 0%,rgba(26,21,48,0.98) 100%)}#dor{background:linear-gradient(135deg,rgba(13,10,24,0.99) 0%,rgba(19,15,32,0.99) 100%)}#radar-sec{background:linear-gradient(135deg,rgba(19,15,32,0.99) 0%,rgba(13,10,24,0.99) 100%)}.bn-card,.pain-card,.q-block,.scan-item,.ag,.cl-item{border-radius:0 !important;}@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}.btn-sec{touch-action:manipulation;display:inline-flex;align-items:center;gap:10px;font-family:'Barlow',sans-serif;font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;padding:14px 28px;-webkit-clip-path:polygon(10px 0,100% 0,calc(100% - 10px) 100%,0 100%);clip-path:polygon(10px 0,100% 0,calc(100% - 10px) 100%,0 100%);transition:transform .2s,box-shadow .2s;}.btn-sec:hover{transform:translateY(-3px)}.btn-orange{background:rgba(255,123,5,0.15);border:1.5px solid rgba(255,123,5,0.8);color:var(--o);font-weight:800;text-shadow:0 0 10px rgba(255,123,5,.6);box-shadow:0 0 18px rgba(255,123,5,0.3),inset 0 0 16px rgba(255,123,5,0.08);animation:cta-pulse-org 2.8s ease-in-out infinite;}.btn-orange:hover{background:rgba(255,123,5,0.25);box-shadow:0 0 36px rgba(255,123,5,0.6),inset 0 0 20px rgba(255,123,5,0.12);animation:none;}.btn-wpp{background:rgba(37,211,102,0.14);border:1.5px solid #25D366;color:#25D366;font-weight:800;text-shadow:0 0 12px rgba(37,211,102,.7);box-shadow:0 0 22px rgba(37,211,102,0.45),0 0 50px rgba(37,211,102,0.18),inset 0 0 18px rgba(37,211,102,0.08);animation:cta-pulse-wpp 2.2s ease-in-out infinite;}.btn-wpp:hover{background:rgba(37,211,102,0.25);box-shadow:0 0 45px rgba(37,211,102,0.75),0 0 90px rgba(37,211,102,0.3);animation:none;}@media(max-width:767px){.btn-sec{touch-action:manipulation;width:100%;justify-content:center;font-size:13px;padding:13px 16px;}}@media(max-width:767px){#lineChart{height:180px !important}.chart-box{padding:14px 12px 10px !important;margin:20px 0 !important}.chart-lbl{font-size:10px !important;margin-bottom:10px !important;flex-direction:column !important;align-items:flex-start !important;gap:6px !important}.chart-box > div:last-child{grid-template-columns:repeat(3,1fr) !important;gap:3px !important}.chart-box > div:last-child > div{padding:5px 3px !important}.chart-box > div:last-child > div > div:first-child{font-size:13px !important}.chart-box > div:last-child > div > div:last-child{font-size:8px !important}}.cta-price-inline{display:none}@media(max-width:767px){.cta-price-inline{display:block}.cta{touch-action:manipulation;font-size:16px !important;padding:20px 16px !important}}@media(max-width:767px){a[style*="animation:cta-pulse-org"]{animation:none !important;padding:14px 24px !important;font-size:13px !important;border-radius:6px !important;-webkit-clip-path:none !important;clip-path:none !important;}a[style*="animation:cta-pulse-wpp"]{animation:none !important;padding:14px 24px !important;font-size:13px !important;border-radius:6px !important;}div[style*="justify-content:center"][style*="margin-top:36px"],div[style*="justify-content:center"][style*="margin-top:28px"],div[style*="justify-content:center"][style*="padding:40px"]{padding-left:16px !important;padding-right:16px !important;}div[style*="justify-content:center"] a[href="#raiox"],div[style*="justify-content:center"] a[href="#preco"]{width:100% !important;max-width:340px !important;justify-content:center !important;border-radius:6px !important;-webkit-clip-path:none !important;clip-path:none !important;animation:none !important;box-shadow:0 4px 16px rgba(255,123,5,0.35) !important;padding:16px 24px !important;font-size:14px !important;}div[style*="justify-content:center"] a[href*="wa.me"]{max-width:340px !important;justify-content:center !important;border-radius:6px !important;animation:none !important;box-shadow:0 4px 16px rgba(37,211,102,0.35) !important;padding:16px 24px !important;font-size:14px !important;}}canvas{-webkit-transform:translateZ(0);transform:translateZ(0);will-change:transform;}html{scroll-behavior:smooth}@media(max-width:767px){.holo-surf::after{animation:none}.scan-item::after{animation:none}.raiox-img-wrap::after{animation:none}50%{box-shadow:0 0 28px rgba(255,123,5,0.65);border-color:#FF9F05}}50%{opacity:.4}50%{filter:drop-shadow(0 0 4px rgba(255,123,5,.5))}
+/* ── SUBTLE NEON BORDERS — alternating blocks ── */
+
+/* bn-card: remove clip-path strong edge, add soft neon */
+.bn-card{
+  border:none !important;
+  box-shadow:0 0 0 1px rgba(255,123,5,0.08),0 0 20px rgba(255,123,5,0.06) !important;
+  background:linear-gradient(135deg,rgba(255,123,5,0.06) 0%,rgba(13,10,24,0.97) 100%) !important;
+}
+.bn-card::before{
+  background:linear-gradient(90deg,rgba(255,123,5,0.4),rgba(255,159,5,0.15),transparent 70%) !important;
+  box-shadow:none !important;
+}
+
+/* scan-item — handled at base level */
+
+/* q-block: softer left border */
+.q-block{
+  border-left:2px solid rgba(255,123,5,0.25) !important;
+  box-shadow:none !important;
+}
+
+/* step-badge: remove hard border */
+.step-badge{
+  border:1px solid rgba(255,123,5,0.12) !important;
+  background:rgba(255,123,5,0.06) !important;
+  box-shadow:0 0 12px rgba(255,123,5,0.08) !important;
+}
+
+/* ag — handled at base level */
+
+/* .pi pressao bullets: no border */
+.pi{
+  border:none !important;
+  border-left:2px solid rgba(255,42,26,0.2) !important;
+  background:rgba(255,42,26,0.03) !important;
+  box-shadow:none !important;
+}
+
+/* .cl-item checklist: very subtle */
+.cl-item{
+  border:none !important;
+  border-left:2px solid rgba(57,255,20,0.15) !important;
+  background:rgba(57,255,20,0.02) !important;
+  box-shadow:none !important;
+}
+.cl-item:hover{
+  background:rgba(57,255,20,0.04) !important;
+}
+
+/* chart-box: softer */
+.chart-box{
+  border:none !important;
+  box-shadow:0 0 0 1px rgba(255,123,5,0.07),0 0 30px rgba(255,123,5,0.05) !important;
+}
+
+/* pain-card: soft glow instead of hard border */
+.pain-card{
+  border:none !important;
+  box-shadow:0 0 0 1px rgba(255,123,5,0.06) !important;
+}
+.pain-card::before{
+  width:2px !important;
+  opacity:0.4 !important;
+}
+
+/* kpi-strip: subtle */
+.kpi-strip{
+  border:none !important;
+  box-shadow:0 0 0 1px rgba(255,123,5,0.1),0 0 30px rgba(255,123,5,0.05) !important;
+}
+
+/* ── NEON GLOW BORDERS — remove hard lines, add soft neon ── */
+.scan-visual,.scan-item,.ag,.bn-card,.chart-box,.pain-card,.cl-item,.step-badge,.q-block,.pi,.kpi-strip{
+  outline:none;
+}
+/* scan-visual: neon container */
+.scan-visual{
+  background:rgba(10,8,20,0.85) !important;
+  border:none !important;
+  box-shadow:
+    0 0 0 1px rgba(255,123,5,0.08),
+    0 0 30px rgba(255,123,5,0.07),
+    inset 0 0 40px rgba(255,123,5,0.03) !important;
+}
+
+/* ════ MOBILE FINAL POLISH ════ */
+@media(max-width:767px){
+  /* Typography scale */
+  body{font-size:15px}
+  .display{font-size:clamp(28px,8vw,48px) !important}
+  .lbl{font-size:10px !important}
+
+  /* Hero */
+  #hero{padding:100px 0 60px;min-height:auto}
+  .hero-h1{font-size:clamp(30px,9vw,52px) !important;line-height:1.05 !important}
+  .kpi-strip{flex-wrap:wrap;gap:8px;padding:12px 16px}
+  .kpi-val{font-size:clamp(24px,7vw,36px)}
+
+  /* Case section */
+  .bn-card{padding:16px 14px}
+  .big-numbers{gap:4px}
+
+  /* IRA section */
+  #ira .vs-grid{grid-template-columns:1fr !important}
+
+  /* Preco section */
+  #preco .w{padding:0 16px}
+  .checklist{max-width:100% !important}
+  .cl-check{width:24px;height:24px;font-size:11px;flex-shrink:0}
+
+  /* CTA buttons */
+  .cta{
+    width:90% !important;
+    max-width:320px !important;
+    padding:16px 20px !important;
+    font-size:14px !important;
+    border-radius:10px !important;
+  }
+  .cta-note{font-size:11px}
+
+  /* Anchor buttons */
+  div[style*="justify-content:center"] > a[href="#preco"]{
+    width:90% !important;
+    max-width:320px !important;
+    justify-content:center !important;
+    border-radius:6px !important;
+    font-size:13px !important;
+    padding:15px 20px !important;
+  }
+
+  /* Verdict bar */
+  #verdictBar{border-radius:0 !important}
+  #verdictMiddle > div:first-child{flex-wrap:wrap}
+
+  /* Erlon grid */
+  #erlonGrid{grid-template-columns:1fr !important}
+
+  /* Footer */
+  footer .w{padding:32px 16px 24px}
+  footer .rights-grid{grid-template-columns:1fr !important}
+
+  /* Vagas block */
+  #vagasNum{font-size:72px !important}
+
+  /* Steps */
+  .step{flex-direction:column;gap:12px}
+
+  /* Garantia */
+  .garantia-body{flex-direction:column;align-items:flex-start}
+
+  /* Scan items */
+  .scan-item{padding:12px 14px;gap:10px}
+  .si-status{font-size:8px !important;padding:2px 7px !important}
+
+  /* Objecoes */
+  #objecoes .obj-grid{grid-template-columns:1fr !important}
+}
+
+/* Very small phones */
+@media(max-width:380px){
+  .hero-h1{font-size:28px !important}
+  .display{font-size:26px !important}
+  .cta{font-size:13px !important;padding:14px 16px !important}
+  #vagasNum{font-size:60px !important}
+  .kpi-val{font-size:22px !important}
+}
+
+@media(max-width:767px){
+  .holo-surf::after,
+  .raiox-img-wrap::after{animation:none !important}
+  .scan-line-anim{animation-duration:6s !important}
+}
+</style>
+<link rel="preconnect" href="https://i.ibb.co" crossorigin>
+<link rel="preconnect" href="https://scripts.converteai.net">
+<link rel="dns-prefetch" href="https://scripts.converteai.net">
+<meta http-equiv="x-dns-prefetch-control" content="on">
+<link rel="dns-prefetch" href="//scripts.converteai.net">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;700;800;900&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;700;800;900&display=swap"></noscript>
+
+<!-- Facebook Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1660742761748533');
+fbq('track','PageView');
+fbq('track','ViewContent',{content_name:'Raio-X Estrategico do Delivery',content_category:'Consultoria',value:147,currency:'BRL'});
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1660742761748533&ev=PageView&noscript=1"/></noscript>
+<!-- /Facebook Pixel -->
+
+<!-- Facebook CAPI -->
+<script>
+(function(){
+  var PID='1660742761748533';
+  var TK='EAAFPloE2qHUBRRUqTvEFXJqvkz7jkBpnmxUFzIeYP0bXU6tfKT6cC2PIAZBX5jZA2GJs4kYdnPcHMCkYIGj2GaJFCP47q3l405UYuJrZCtoQfDQcQYUL0rYMCvOpiQmQIbd8cOpYqF3iYDZBON5N3p4lATShiCTs03UEeTGjkUZANHIFWZAOcGBxPX9Wsi8XaMYgZDZD';
+  function send(n,d){
+    fetch('https://graph.facebook.com/v19.0/'+PID+'/events?access_token='+TK,{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({data:[{event_name:n,event_time:Math.floor(Date.now()/1000),
+        action_source:'website',event_source_url:window.location.href,
+        user_data:{client_user_agent:navigator.userAgent,
+          fbp:(document.cookie.match('(^|;)\s*_fbp=([^;]*)')||[])[2]||'',
+          fbc:(document.cookie.match('(^|;)\s*_fbc=([^;]*)')||[])[2]||''},
+        custom_data:d||{}}]})
+    }).catch(function(){});
+  }
+  send('PageView');
+  send('ViewContent',{content_name:'Raio-X Estrategico do Delivery',value:147,currency:'BRL'});
+  // Attach directly to each button — no bubbling issues
+  function attachPixel(){
+    document.querySelectorAll('a[href*="wa.me"]').forEach(function(el){
+      if(el._pixelBound) return;
+      el._pixelBound=true;
+      el.addEventListener('click',function(){
+        fbq('track','Contact');
+        send('Contact');
+      },{once:true});
+    });
+    document.querySelectorAll('a[href*="kiwify"]').forEach(function(el){
+      if(el._pixelBound) return;
+      el._pixelBound=true;
+      el.addEventListener('click',function(){
+        fbq('track','InitiateCheckout',{value:147,currency:'BRL'});
+        send('InitiateCheckout',{value:147,currency:'BRL'});
+      },{once:true});
+    });
+  }
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',attachPixel);}
+  else{attachPixel();}
+})();
+</script>
+<!-- /Facebook CAPI -->
+</head>
+<body>
+
+<main id="main-content" aria-label="Conteúdo principal">
+<section id="hero">
+ <canvas id="hero-canvas" fetchpriority="high"></canvas>
+ <div class="w hero-inner">
+ <div class="tag fi"><span class="pulse"></span>ATENÇÃO · DONO DE DELIVERY</div>
+
+ <h1 class="display hero-h1 fu">
+ Enquanto você<br>
+ <span class="accent">trabalha mais…</span>
+ </h1>
+
+ <p class="hero-body fu" style="transition-delay:.08s">
+ Tem coisa acontecendo <strong style="color:var(--text)">AGORA</strong> que está comprometendo o potencial do seu delivery todos os dias — sem perceber.
+ </p>
+
+ <p class="hero-strong fu" style="transition-delay:.14s">
+ Não é falta de cliente.<br>
+ Não é falta de esforço.<br>
+ <span class="glow-orange">É estrutura.</span>
+ </p>
+
+ <p class="fu" style="font-size:17px;color:var(--muted);transition-delay:.2s">
+ E enquanto isso não for corrigido… você continua vendendo —
+ <strong style="color:var(--text)">mas não consegue escalar de forma consistente.</strong>
+ </p>
+
+ <!-- CONTADOR DE PERDA EM TEMPO REAL -->
+ <div class="fu" style="transition-delay:.22s;background:rgba(255,42,26,0.07);border:1px solid rgba(255,42,26,0.25);padding:16px 20px;margin-top:8px;display:flex;align-items:center;gap:16px;clip-path:polygon(10px 0,100% 0,calc(100% - 10px) 100%,0 100%);box-shadow:0 0 30px rgba(255,42,26,0.06)">
+ <div style="flex-shrink:0;width:8px;height:8px;border-radius:50%;background:var(--r);box-shadow:0 0 12px rgba(255,42,26,0.9);animation:blink 1s ease-in-out infinite"></div>
+ <div>
+ <div style="font-size:11px;font-weight:700;letter-spacing:.14em;color:var(--muted);margin-bottom:2px">OPORTUNIDADE NÃO APROVEITADA AGORA</div>
+ <div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(24px,4vw,34px);line-height:1;color:var(--r);text-shadow:0 0 16px rgba(255,42,26,.6)" id="heroLossCounter">R$ 0,00</div>
+ </div>
+ <div style="font-size:12px;color:var(--muted);line-height:1.4;margin-left:auto;text-align:right;max-width:140px">por minuto<br>sem estrutura</div>
+ </div>
+
+ <div class="kpi-strip fu" style="transition-delay:.3s">
+ <div class="kpi">
+ <div class="kpi-val"><span id="k1">0</span>%</div>
+ <div class="kpi-lbl">dos deliveries que fecham o mês no vermelho sem saber o porquê</div>
+ </div>
+ <div class="kpi">
+ <div class="kpi-val">R$<span id="k2v">0</span>k</div>
+ <div class="kpi-lbl">faturamento médio que o Raio-X identificou como potencial não explorado</div>
+ </div>
+ <div class="kpi">
+ <div class="kpi-val"><span id="k3">0</span>x</div>
+ <div class="kpi-lbl">mais resultado com estrutura corrigida vs. trabalhar mais</div>
+ </div>
+ </div>
+ </div>
+</section>
+
+<div class="sep"></div>
+
+<section id="ira">
+ <div class="w">
+ <p class="lbl fu">O que mais revolta nesse mercado</p>
+ <h2 class="display fu" style="font-size:clamp(40px,8vw,72px);margin-bottom:8px">
+ Ver delivery <span class="accent-r">pior que o teu…</span>
+ </h2>
+ <h2 class="display fu" style="font-size:clamp(40px,8vw,72px);margin-bottom:36px;transition-delay:.06s">
+ crescendo.
+ </h2>
+
+ <div class="comp-vs fu" style="transition-delay:.12s">
+ <div class="comp-col them">
+ <div class="comp-title red">ELES · menor qualidade</div>
+ <div class="comp-row"><span class="ic">📈</span> Faturamento crescendo</div>
+ <div class="comp-row"><span class="ic">🎯</span> Clientes chegando todo dia</div>
+ <div class="comp-row"><span class="ic">💰</span> Operação escalando</div>
+ </div>
+ <div class="comp-vs-mid">
+ <div class="vs-label">VS</div>
+ </div>
+ <div class="comp-col you">
+ <div class="comp-title org">VOCÊ · melhor produto</div>
+ <div class="comp-row"><span class="ic" style="opacity:.5">📉</span> <span style="color:var(--muted)">Resultado travado</span></div>
+ <div class="comp-row"><span class="ic" style="opacity:.5">😶</span> <span style="color:var(--muted)">Cliente que some</span></div>
+ <div class="comp-row"><span class="ic" style="opacity:.5">⏳</span> <span style="color:var(--muted)">Trabalho sem retorno</span></div>
+ </div>
+ </div>
+
+ <div class="al fu" style="font-size:20px;font-weight:700;transition-delay:.18s">
+ <strong>Você trabalha mais. Eles faturam mais. Por quê?</strong>
+ </div>
+ </div>
+</section>
+
+<div class="sep"></div>
+
+<section id="case">
+ <div class="w">
+
+ <!-- Destaque AULA — acima de tudo -->
+ <div class="fu" style="text-align:center;margin-bottom:32px">
+   <div style="display:inline-flex;align-items:center;gap:10px;background:rgba(255,42,26,0.12);border:1px solid rgba(255,42,26,0.5);padding:8px 20px;margin-bottom:20px;box-shadow:0 0 20px rgba(255,42,26,0.15)">
+     <span style="width:8px;height:8px;border-radius:50%;background:#FF2A1A;box-shadow:0 0 12px rgba(255,42,26,1);animation:blink 0.8s ease-in-out infinite;flex-shrink:0"></span>
+     <span style="font-size:10px;font-weight:800;letter-spacing:.22em;color:#FF2A1A">AULA GRATUITA — DISPONÍVEL AGORA</span>
+   </div>
+   <h2 class="display" style="font-size:clamp(36px,7vw,68px);margin-bottom:12px;line-height:1">
+     Como saímos do<br>
+     <span class="accent-r">zero</span> ao <span class="accent">R$136k/mês</span>
+   </h2>
+   <p style="font-size:clamp(16px,2.5vw,20px);color:var(--sub);max-width:560px;margin:0 auto;line-height:1.7">
+     Nessa aula eu mostro <strong style="color:var(--text)">exatamente o que fizemos</strong> — cada decisão, cada correção, cada mês. Não é teoria. É o que aconteceu de verdade, documentado.
+   </p>
+ </div>
+
+ <!-- VSL -->
+ <div class="fu" style="transition-delay:.08s;margin-bottom:28px">
+ <div style="font-size:11px;font-weight:800;letter-spacing:.18em;color:var(--o);margin-bottom:10px;text-shadow:0 0 8px rgba(255,123,5,.4);display:flex;align-items:center;gap:8px">
+   <span style="width:7px;height:7px;border-radius:50%;background:var(--r);box-shadow:0 0 10px rgba(255,42,26,.9);animation:blink 1s ease-in-out infinite;display:inline-block"></span>
+   ▶ APERTE O PLAY E ASSISTA A AULA COMPLETA
+ </div>
+ <div style="position:relative;background:var(--dark2);border:2px solid rgba(255,123,5,0.35);overflow:hidden;box-shadow:0 0 60px rgba(255,123,5,0.12),0 0 120px rgba(255,123,5,0.05)">
+   <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--r),var(--o),var(--a));box-shadow:0 0 14px rgba(255,123,5,.6)"></div>
+   <div id="ytVSL" style="width:100%;aspect-ratio:16/9;position:relative;overflow:hidden"></div>
+ </div>
+ <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:10px;font-size:12px;color:var(--muted)">
+   <span style="color:#39FF14;font-size:14px">●</span>
+   Aula gravada · acesso imediato · sem cadastro
+ </div>
+ </div>
+
+ <!-- Big numbers -->
+ <div class="big-numbers fu" style="transition-delay:.1s">
+ <div class="bn-card">
+ <div style="font-size:10px;font-weight:700;letter-spacing:.16em;color:var(--muted);margin-bottom:8px">MÊS 1 · PONTO DE PARTIDA</div>
+ <div class="bn-val" style="font-size:clamp(36px,7vw,64px)">R$10k</div>
+ <div class="bn-lbl">faturamento inicial · operação travada</div>
+ <div style="margin-top:12px;font-size:12px;color:var(--muted);line-height:1.5">Sem canal de aquisição. Cardápio sem estratégia. Margem inexistente.</div>
+ </div>
+ <div class="bn-card">
+ <div style="font-size:10px;font-weight:700;letter-spacing:.16em;color:var(--muted);margin-bottom:8px">MÊS 5 · APÓS CORREÇÃO</div>
+ <div class="bn-val">R$136k</div>
+ <div class="bn-lbl">por mês · faturamento recorrente</div>
+ <div class="bn-tag">↗ crescimento estruturado</div>
+ </div>
+ </div>
+
+ <!-- Total acumulado destaque -->
+ <div class="fu" style="transition-delay:.14s;background:linear-gradient(135deg,rgba(255,123,5,0.09),rgba(13,10,24,0.95));border:1px solid rgba(255,123,5,0.22);padding:20px 24px;display:flex;align-items:center;gap:20px;clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,16px 100%,0 calc(100% - 16px));margin-bottom:4px;flex-wrap:wrap">
+ <div>
+ <div style="font-size:10px;font-weight:700;letter-spacing:.18em;color:var(--muted);margin-bottom:4px">FATURAMENTO TOTAL ACUMULADO · 5 MESES</div>
+ <div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,9vw,72px);line-height:1;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 18px rgba(255,123,5,.4))">R$416.000</div>
+ </div>
+ <div style="margin-left:auto;text-align:right">
+ <div style="font-size:13px;color:var(--muted);line-height:1.6;max-width:200px">Em 5 meses saiu do zero estrutural para um delivery que <strong style="color:var(--text)">fatura de forma consistente e crescente.</strong></div>
+ </div>
+ </div>
+
+ <!-- CHART -->
+ <div class="chart-box holo-surf fu" style="transition-delay:.18s;padding:24px 20px 16px">
+ <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+ <div class="chart-lbl" style="margin-bottom:0">// TRAJETÓRIA REAL · FATURAMENTO MÊS A MÊS</div>
+ <div style="display:flex;gap:16px;font-size:10px;font-weight:700;letter-spacing:.1em">
+ <span style="color:var(--o);display:flex;align-items:center;gap:5px"><span style="display:inline-block;width:28px;height:2px;background:linear-gradient(90deg,#FF7B05,#39FF14);box-shadow:0 0 6px rgba(255,123,5,.6)"></span>TRAJETÓRIA REAL</span>
+ </div>
+ </div>
+ <canvas id="lineChart" height="240" style="width:100%;display:block"></canvas>
+ <!-- Milestone legenda -->
+ <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin-top:14px" id="chartMilestones">
+ <div style="text-align:center;padding:6px 4px;background:rgba(255,42,26,.07);border:1px solid rgba(255,42,26,.2)">
+ <div style="font-family:'Bebas Neue',sans-serif;font-size:16px;color:#FF2A1A;text-shadow:0 0 8px rgba(255,42,26,.5)">R$10k</div>
+ <div style="font-size:9px;color:var(--muted);margin-top:2px">Mês 1</div>
+ </div>
+ <div style="text-align:center;padding:6px 4px;background:rgba(255,123,5,.07);border:1px solid rgba(255,123,5,.2)">
+ <div style="font-family:'Bebas Neue',sans-serif;font-size:16px;color:var(--o);text-shadow:0 0 8px rgba(255,123,5,.5)">R$72k</div>
+ <div style="font-size:9px;color:var(--muted);margin-top:2px">Mês 2</div>
+ </div>
+ <div style="text-align:center;padding:6px 4px;background:rgba(255,123,5,.07);border:1px solid rgba(255,123,5,.2)">
+ <div style="font-family:'Bebas Neue',sans-serif;font-size:16px;color:var(--o);text-shadow:0 0 8px rgba(255,123,5,.5)">R$93k</div>
+ <div style="font-size:9px;color:var(--muted);margin-top:2px">Mês 3</div>
+ </div>
+ <div style="text-align:center;padding:6px 4px;background:rgba(255,123,5,.07);border:1px solid rgba(255,123,5,.2)">
+ <div style="font-family:'Bebas Neue',sans-serif;font-size:16px;color:var(--o);text-shadow:0 0 8px rgba(255,123,5,.5)">R$98k</div>
+ <div style="font-size:9px;color:var(--muted);margin-top:2px">Mês 4</div>
+ </div>
+ <div style="text-align:center;padding:6px 4px;background:rgba(57,255,20,.07);border:1px solid rgba(57,255,20,.25)">
+ <div style="font-family:'Bebas Neue',sans-serif;font-size:16px;color:#39FF14;filter:drop-shadow(0 0 8px rgba(57,255,20,.6))">R$136k</div>
+ <div style="font-size:9px;color:var(--muted);margin-top:2px">Mês 5</div>
+ </div>
+ </div>
+ </div>
+
+ <!-- Copy pós-gráfico -->
+ <div class="fu" style="transition-delay:.24s;margin-top:20px">
+ <p style="color:var(--muted);font-size:16px;line-height:1.7;margin-bottom:16px">
+ Mês 1 entrou no Raio-X com R$10k. Saiu com clareza cirúrgica sobre o que estava errado.
+ Em poucos meses os resultados já eram expressivos — e crescentes.
+ </p>
+ <div style="display:flex;flex-direction:column;gap:8px">
+ <div style="display:flex;align-items:center;gap:12px;font-size:16px">
+ <span style="color:var(--r);font-size:18px;font-weight:700;text-shadow:var(--glowR)">✕</span>
+ <span style="color:var(--muted);text-decoration:line-through">Marca · seguidores · iFood · sorte</span>
+ </div>
+ <div class="al" style="font-size:18px;font-weight:700;color:var(--text)">
+ <strong class="glow-orange">Estrutura. Só estrutura.</strong>
+ </div>
+ </div>
+ </div>
+ </div>
+</section>
+
+<div style="display:flex;justify-content:center;align-items:center;padding:48px 20px;background:var(--dark)" class="fu">
+ <a href="#preco"
+ style="
+ display:inline-flex;align-items:center;gap:12px;
+ background:linear-gradient(135deg,#FF7B05 0%,#FF9F05 100%);
+ color:#1A0800;
+ font-family:Barlow,sans-serif;font-size:15px;font-weight:800;
+ letter-spacing:.08em;text-transform:uppercase;text-decoration:none;
+ padding:18px 40px;border:none;cursor:pointer;
+ border-radius:4px;
+ box-shadow:0 0 24px rgba(255,123,5,0.6),0 0 50px rgba(255,123,5,0.25),0 4px 16px rgba(0,0,0,0.4);
+ animation:cta-pulse-org 2.8s ease-in-out infinite;
+ ">
+ <svg width="18" height="18" viewBox="0 0 24 24" fill="#1A0800" style="flex-shrink:0">
+ <circle cx="11" cy="11" r="8" stroke="#1A0800" stroke-width="2" fill="none"/>
+ <line x1="21" y1="21" x2="16.65" y2="16.65" stroke="#1A0800" stroke-width="2.5" stroke-linecap="round"/>
+ <line x1="11" y1="8" x2="11" y2="14" stroke="#1A0800" stroke-width="2" stroke-linecap="round"/>
+ <line x1="8" y1="11" x2="14" y2="11" stroke="#1A0800" stroke-width="2" stroke-linecap="round"/>
+ </svg>
+ <span>Ver como funciona o Raio-X</span>
+ <span style="font-size:18px;opacity:.7">↓</span>
+ </a>
+</div>
+
+<div class="sep"></div>
+
+<section id="prova" style="background:var(--surf2)">
+ <div class="w">
+ <p class="lbl fu">Prova social · quem já passou pelo raio-x</p>
+ <h2 class="display fu" style="font-size:clamp(30px,5.5vw,54px);margin-bottom:8px;transition-delay:.04s">
+ Mais de <span class="accent">400 donos de delivery</span><br>já passaram pelo Raio-X.
+ </h2>
+ <p class="fu" style="color:var(--muted);font-size:16px;margin-bottom:36px;transition-delay:.08s;max-width:520px">
+ Donos que estavam no mesmo ciclo que você — trabalhando muito, crescendo pouco — e descobriram exatamente o que estava travando.
+ </p>
+
+ <!-- AUTORIDADE DO ANALISTA -->
+ <div class="fu" style="transition-delay:.1s;background:linear-gradient(135deg,rgba(255,123,5,0.07),rgba(13,10,24,0.97));border:1px solid rgba(255,123,5,0.2);padding:24px 28px;display:flex;align-items:flex-start;gap:20px;clip-path:polygon(0 0,calc(100% - 20px) 0,100% 20px,100% 100%,0 100%);margin-bottom:28px;flex-wrap:wrap">
+ <div style="flex-shrink:0;width:72px;height:72px;border-radius:50%;border:2px solid rgba(255,123,5,0.5);box-shadow:0 0 20px rgba(255,123,5,0.3),0 0 40px rgba(255,123,5,0.1);overflow:hidden;flex-shrink:0">
+ <img loading="lazy" decoding="async" src="https://i.ibb.co/VcXmCTPs/imagem-1-jonas.jpg" loading="eager" fetchpriority="high" decoding="sync" alt="Jonas" style="width:100%;height:100%;object-fit:cover;object-position:center top">
+ </div>
+ <div style="flex:1;min-width:200px">
+ <div style="font-size:16px;font-weight:700;color:var(--text);margin-bottom:2px">Jonas · Especialista em Estrutura de Delivery</div>
+ <div style="font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--o);margin-bottom:10px;text-shadow:0 0 8px rgba(255,123,5,.3)">+6 anos analisando operações de delivery</div>
+ <div style="font-size:14px;color:var(--sub);line-height:1.65">Já analisou mais de 400 deliveries em todo o Brasil — de R$8k a R$200k/mês. Especialista em identificar os gargalos que donos de delivery não enxergam porque estão dentro da operação todos os dias.</div>
+ </div>
+ <div style="display:flex;flex-direction:column;gap:8px;flex-shrink:0">
+ <div style="text-align:center;padding:10px 20px;background:rgba(255,123,5,0.08);border:1px solid rgba(255,123,5,0.2)">
+ <div style="font-family:'Bebas Neue',sans-serif;font-size:32px;line-height:1;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">400+</div>
+ <div style="font-size:9px;font-weight:700;letter-spacing:.12em;color:var(--muted)">DELIVERIES ANALISADOS</div>
+ </div>
+ <div style="text-align:center;padding:10px 20px;background:rgba(57,255,20,0.05);border:1px solid rgba(57,255,20,0.18)">
+ <div style="font-family:'Bebas Neue',sans-serif;font-size:32px;line-height:1;color:#39FF14;filter:drop-shadow(0 0 10px rgba(57,255,20,.5))">87%</div>
+ <div style="font-size:9px;font-weight:700;letter-spacing:.12em;color:var(--muted)">CRESCERAM EM 90 DIAS</div>
+ </div>
+ </div>
+ </div>
+
+ <!-- OBJEÇÃO: meu delivery é pequeno demais -->
+ <div class="fu" style="transition-delay:.2s;margin-top:16px;padding:20px 24px;background:rgba(57,255,20,0.04);border:1px solid rgba(57,255,20,0.18);display:flex;align-items:flex-start;gap:14px">
+ <div style="font-size:22px;flex-shrink:0;filter:drop-shadow(0 0 8px rgba(57,255,20,.5))">💡</div>
+ <div>
+ <div style="font-size:13px;font-weight:700;color:#39FF14;margin-bottom:6px;text-shadow:0 0 8px rgba(57,255,20,.3)">E se meu delivery for pequeno demais?</div>
+ <div style="font-size:14px;color:var(--sub);line-height:1.65">O Raio-X foi feito exatamente para deliveries entre R$5k e R$80k/mês. Quanto menor o negócio, mais impacto tem cada correção — porque você tem menos margem pra erro. Deliveries pequenos são os que mais crescem depois do análise.</div>
+ </div>
+ </div>
+ </div>
+</section>
+
+<div class="sep"></div>
+
+<section style="background:var(--dark);overflow:hidden;position:relative">
+
+ <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:500px;background:radial-gradient(ellipse,rgba(255,123,5,0.08),transparent 70%);pointer-events:none"></div>
+
+ <div class="w" style="position:relative;z-index:1;padding-top:80px;padding-bottom:80px">
+
+ <p class="lbl fu">Case real · resultado replicável</p>
+ <h2 class="display fu" style="font-size:clamp(32px,6vw,62px);margin-bottom:16px;transition-delay:.04s">
+ Esse delivery estava<br>
+ <span class="accent">no mesmo lugar que você está agora.</span>
+ </h2>
+ <p class="fu" style="color:var(--sub);font-size:17px;line-height:1.75;max-width:600px;margin-bottom:40px;transition-delay:.08s">
+ Erlon chegou com um delivery funcionando — mas completamente travado. Trabalhava mais de 12 horas por dia, via concorrentes piores crescendo e não entendia o motivo. Decidiu arriscar R$147 no Raio-X. O que veio depois mudou tudo.
+ </p>
+
+ <!-- FOTO + QUOTE GRID -->
+ <div class="fu" style="transition-delay:.1s;display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-bottom:4px" id="erlonGrid">
+
+ <!-- FOTO REAL -->
+ <div style="position:relative;overflow:hidden;min-height:260px">
+ <img src="https://i.ibb.co/HLSgHWb5/imagem-2-erlon-equipe.jpg" loading="lazy" decoding="async" alt="Erlon e equipe Croc's Delivery"
+ width="600" height="900"
+ style="width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block;-webkit-transform:translateZ(0)">
+ <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(8,6,14,0.85) 100%)"></div>
+ <div style="position:absolute;bottom:0;left:0;right:0;padding:20px">
+ <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,123,5,0.12);border:1px solid rgba(255,123,5,0.35);padding:5px 12px;margin-bottom:8px">
+ <span style="width:6px;height:6px;border-radius:50%;background:var(--o);box-shadow:0 0 8px rgba(255,123,5,.9);animation:blink 1s ease-in-out infinite;flex-shrink:0"></span>
+ <span style="font-size:10px;font-weight:700;letter-spacing:.12em;color:var(--o)">CASO REAL · CLIENTE RAIO-X</span>
+ </div>
+ <div style="font-size:16px;font-weight:700;color:var(--text)">Erlon · Croc's Delivery</div>
+ <div style="font-size:12px;color:var(--o);text-shadow:0 0 8px rgba(255,123,5,.4)">De 1 unidade travada para 3 unidades em expansão</div>
+ </div>
+ </div>
+
+ <!-- STATS + QUOTE -->
+ <div style="display:flex;flex-direction:column;gap:4px">
+
+ <!-- Stat 1 -->
+ <div style="flex:1;padding:22px 20px;background:var(--surf);border-left:3px solid var(--r);position:relative;overflow:hidden">
+ <div style="position:absolute;top:0;right:0;width:80px;height:80px;background:radial-gradient(circle,rgba(255,42,26,0.08),transparent 70%)"></div>
+ <div style="font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--muted);margin-bottom:6px">ANTES DO RAIO-X</div>
+ <div style="font-family:'Bebas Neue',sans-serif;font-size:36px;line-height:1;color:var(--r);text-shadow:0 0 12px rgba(255,42,26,.5)">1 unidade</div>
+ <div style="font-size:13px;color:var(--muted);margin-top:4px">Travada. Sem crescimento. 12h/dia de trabalho.</div>
+ </div>
+
+ <!-- Stat 2 -->
+ <div style="flex:1;padding:22px 20px;background:var(--surf);border-left:3px solid var(--o)">
+ <div style="font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--muted);margin-bottom:6px">DEPOIS DO RAIO-X</div>
+ <div style="font-family:'Bebas Neue',sans-serif;font-size:36px;line-height:1;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 10px rgba(255,123,5,.4))">3 unidades</div>
+ <div style="font-size:13px;color:var(--muted);margin-top:4px">Abertas em menos de 1 ano. Com operação replicável.</div>
+ </div>
+
+ <!-- Stat 3 -->
+ <div style="flex:1;padding:22px 20px;background:linear-gradient(135deg,rgba(57,255,20,0.07),rgba(13,10,24,0.97));border-left:3px solid #39FF14">
+ <div style="font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--muted);margin-bottom:6px">CRESCIMENTO</div>
+ <div style="font-family:'Bebas Neue',sans-serif;font-size:36px;line-height:1;color:#39FF14;filter:drop-shadow(0 0 12px rgba(57,255,20,.5))">+200%</div>
+ <div style="font-size:13px;color:var(--muted);margin-top:4px">Faturamento no mesmo período. Estrutura que escala.</div>
+ </div>
+
+ </div>
+ </div>
+
+ <!-- QUOTE ERLON -->
+ <div class="fu" style="transition-delay:.16s;padding:28px 32px;background:linear-gradient(135deg,rgba(255,123,5,0.07),rgba(13,10,24,0.97));border-left:4px solid var(--o);position:relative;overflow:hidden;margin-bottom:32px">
+ <div style="position:absolute;top:-16px;left:20px;font-family:'Bebas Neue',sans-serif;font-size:80px;line-height:1;color:var(--o);opacity:.1">"</div>
+ <p style="font-size:clamp(16px,2.2vw,20px);font-style:italic;color:var(--sub);line-height:1.7;margin-bottom:16px;position:relative;z-index:1">
+ "Eu achei que era mais um desses análises genéricos que não seriam de nada. Mas o Jonas foi direto no ponto — me mostrou exatamente onde eu estava deixando resultado na mesa. Em pouco tempo eu já tinha aberto a segunda unidade. Hoje são 3 e já estou planejando a quarta."
+ </p>
+ <div style="display:flex;align-items:center;gap:12px">
+ <div style="width:40px;height:40px;border-radius:50%;overflow:hidden;border:2px solid rgba(255,123,5,.4);flex-shrink:0">
+ <img src="https://i.ibb.co/HLSgHWb5/imagem-2-erlon-equipe.jpg" loading="lazy" decoding="async" alt="Erlon" width="600" height="900" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block;-webkit-transform:translateZ(0)">
+ </div>
+ <div>
+ <div style="font-size:14px;font-weight:700;color:var(--text)">Erlon</div>
+ <div style="font-size:11px;color:var(--o);text-shadow:0 0 8px rgba(255,123,5,.3)">Croc's Delivery · Cliente do Raio-X</div>
+ </div>
+ <div style="margin-left:auto;display:flex;gap:2px">
+ <span style="color:#FFB800;font-size:16px">★★★★★</span>
+ </div>
+ </div>
+ </div>
+
+ <!-- KEY MESSAGE -->
+ <div class="fu" style="transition-delay:.22s;text-align:center">
+ <div style="display:inline-flex;align-items:center;gap:16px;padding:20px 28px;background:rgba(255,123,5,0.07);border:1px solid rgba(255,123,5,0.2);flex-wrap:wrap;justify-content:center">
+ <span style="font-size:clamp(16px,2.5vw,22px);font-weight:700;color:var(--text);line-height:1.4">
+ O que o Erlon fez <em style="font-style:normal;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">é replicável.</em>
+ </span>
+ <span style="font-size:15px;color:var(--muted);max-width:340px;line-height:1.55">
+ A estrutura que fez o delivery dele crescer é a mesma que o Raio-X vai identificar no seu.
+ </span>
+ </div>
+ </div>
+
+ </div>
+</section>
+
+<div class="sep"></div>
+
+<section id="depo-video" style="background:var(--dark2)">
+ <div class="w">
+ <p class="lbl fu">Depoimentos em vídeo · clientes reais</p>
+ <h2 class="display fu" style="font-size:clamp(28px,5vw,50px);margin-bottom:8px;transition-delay:.04s">
+ Ouça de quem <span class="accent">já passou pelo Raio-X.</span>
+ </h2>
+ <p class="fu" style="color:var(--muted);font-size:15px;margin-bottom:32px;transition-delay:.08s">
+ Não são promessas. São resultados reais de donos de delivery que identificaram o que estava travando.
+ </p>
+
+ <!-- GRID DE VÍDEOS: 2 colunas desktop, 1 coluna mobile -->
+ <div id="depoVideoGrid" class="fu" style="transition-delay:.12s;display:grid;grid-template-columns:1fr 1fr;gap:16px">
+
+ <!-- Vídeo 1 -->
+ <div style="background:var(--surf);border:1px solid rgba(255,123,5,0.18);overflow:hidden;position:relative;clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,0 100%)">
+ <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--r),var(--o));box-shadow:0 0 10px rgba(255,123,5,.4);z-index:1"></div>
+ <div id="ytDepo1" style="width:100%;aspect-ratio:9/16;position:relative;overflow:hidden"></div>
+ </div>
+
+ <!-- Vídeo 2 -->
+ <div style="background:var(--surf);border:1px solid rgba(255,123,5,0.18);overflow:hidden;position:relative;clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,0 100%)">
+ <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--r),var(--o));box-shadow:0 0 10px rgba(255,123,5,.4);z-index:1"></div>
+ <div id="ytDepo2" style="width:100%;aspect-ratio:9/16;position:relative;overflow:hidden"></div>
+ </div>
+
+ </div>
+ </div>
+</section>
+<div class="sep"></div>
+
+<div style="display:flex;justify-content:center;align-items:center;padding:40px 20px;background:var(--dark)" class="fu">
+ <a href="#preco"
+ style="
+ display:inline-flex;align-items:center;gap:12px;
+ background:#0D0A18;color:#FF9F05;
+ border:2px solid #FF7B05;
+ font-family:Barlow,sans-serif;font-size:15px;font-weight:800;
+ letter-spacing:.08em;text-transform:uppercase;text-decoration:none;
+ padding:18px 40px;cursor:pointer;border-radius:12px;
+ box-shadow:0 0 20px rgba(255,123,5,0.4),0 0 50px rgba(255,123,5,0.15);
+ animation:cta-pulse 2.8s ease-in-out infinite;
+ ">
+ <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FF9F05" stroke-width="2.5" stroke-linecap="round" style="flex-shrink:0">
+ <line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/>
+ </svg>
+ <span>Quero ver a oferta</span>
+ </a>
+</div>
+
+
+
+
+
+<div class="sep"></div>
+
+
+<section id="preco">
+ <div class="w" style="position:relative;z-index:1">
+
+ <p class="lbl fu" style="justify-content:center">O que você recebe</p>
+ <h2 class="display fu" style="font-size:clamp(24px,4vw,38px);margin-bottom:24px;transition-delay:.04s">
+ Raio-X completo do teu delivery
+ </h2>
+
+ <!-- STACK DE VALOR — dores do dono, quanto cada erro custa -->
+ <div class="fu" style="transition-delay:.06s;max-width:500px;margin:0 auto 28px;display:flex;flex-direction:column;gap:3px">
+
+ <!-- Label topo -->
+ <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 14px;background:rgba(255,42,26,0.08);border:1px solid rgba(255,42,26,0.2)">
+ <span style="font-size:10px;font-weight:700;letter-spacing:.12em;color:rgba(255,42,26,.7)">O IMPACTO DE CADA PROBLEMA SEM CORREÇÃO</span>
+ <span style="font-size:9px;font-weight:700;letter-spacing:.12em;color:var(--muted)">IMPACTO ESTIMADO</span>
+ </div>
+
+ <!-- Linha 1 -->
+ <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 14px;background:rgba(255,255,255,.02);border:none;box-shadow:0 0 0 1px rgba(255,255,255,.04);gap:12px">
+ <span style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--sub)">
+ <span style="color:#FF2A1A;font-size:15px;flex-shrink:0">✕</span>
+ Sem canal próprio de clientes — dependendo de plataforma
+ </span>
+ <span style="font-family:'Bebas Neue',sans-serif;font-size:17px;color:#FF2A1A;white-space:nowrap;text-shadow:0 0 8px rgba(255,42,26,.4)">~R$2.400</span>
+ </div>
+
+ <!-- Linha 2 -->
+ <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 14px;background:rgba(255,255,255,.02);border:none;box-shadow:0 0 0 1px rgba(255,255,255,.04);gap:12px">
+ <span style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--sub)">
+ <span style="color:#FF2A1A;font-size:15px;flex-shrink:0">✕</span>
+ Cardápio sem estratégia — ticket médio abaixo do possível
+ </span>
+ <span style="font-family:'Bebas Neue',sans-serif;font-size:17px;color:#FF2A1A;white-space:nowrap;text-shadow:0 0 8px rgba(255,42,26,.4)">~R$1.800</span>
+ </div>
+
+ <!-- Linha 3 -->
+ <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 14px;background:rgba(255,255,255,.02);border:none;box-shadow:0 0 0 1px rgba(255,255,255,.04);gap:12px">
+ <span style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--sub)">
+ <span style="color:#FF2A1A;font-size:15px;flex-shrink:0">✕</span>
+ Cliente que não volta — sem retenção ou fidelização
+ </span>
+ <span style="font-family:'Bebas Neue',sans-serif;font-size:17px;color:#FF2A1A;white-space:nowrap;text-shadow:0 0 8px rgba(255,42,26,.4)">~R$2.100</span>
+ </div>
+
+ <!-- Linha 4 -->
+ <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 14px;background:rgba(255,255,255,.02);border:none;box-shadow:0 0 0 1px rgba(255,255,255,.04);gap:12px">
+ <span style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--sub)">
+ <span style="color:#FF2A1A;font-size:15px;flex-shrink:0">✕</span>
+ Precificação no chute — margem corroída por desconto
+ </span>
+ <span style="font-family:'Bebas Neue',sans-serif;font-size:17px;color:#FF2A1A;white-space:nowrap;text-shadow:0 0 8px rgba(255,42,26,.4)">~R$1.600</span>
+ </div>
+
+ <!-- Linha 5 -->
+ <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 14px;background:rgba(255,255,255,.02);border:none;box-shadow:0 0 0 1px rgba(255,255,255,.04);gap:12px">
+ <span style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--sub)">
+ <span style="color:#FF2A1A;font-size:15px;flex-shrink:0">✕</span>
+ Operação travada — horas desperdiçadas em rotina ineficiente
+ </span>
+ <span style="font-family:'Bebas Neue',sans-serif;font-size:17px;color:#FF2A1A;white-space:nowrap;text-shadow:0 0 8px rgba(255,42,26,.4)">~R$1.400</span>
+ </div>
+
+ <!-- Linha 6 -->
+ <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 14px;background:rgba(255,255,255,.02);border:none;box-shadow:0 0 0 1px rgba(255,255,255,.04);gap:12px">
+ <span style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--sub)">
+ <span style="color:#FF2A1A;font-size:15px;flex-shrink:0">✕</span>
+ Marketing sem estratégia — post que não gera pedido
+ </span>
+ <span style="font-family:'Bebas Neue',sans-serif;font-size:17px;color:#FF2A1A;white-space:nowrap;text-shadow:0 0 8px rgba(255,42,26,.4)">~R$1.200</span>
+ </div>
+
+ <!-- Total de perdas -->
+ <div style="display:flex;justify-content:space-between;align-items:center;padding:14px;background:rgba(255,42,26,.07);border:none;box-shadow:0 0 0 1px rgba(255,42,26,.12),0 0 20px rgba(255,42,26,.05);gap:12px">
+ <div>
+ <div style="font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--muted);margin-bottom:3px">POTENCIAL NÃO CAPTURADO POR MÊS</div>
+ <div style="font-size:12px;color:var(--muted)">operando sem estrutura e direcionamento</div>
+ </div>
+ <div style="font-family:'Bebas Neue',sans-serif;font-size:32px;color:#FF2A1A;text-shadow:0 0 14px rgba(255,42,26,.6);white-space:nowrap;flex-shrink:0">~R$10.500</div>
+ </div>
+
+ <!-- Separador com vs -->
+ <div style="display:flex;align-items:center;gap:10px;padding:10px 14px">
+ <div style="flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(255,123,5,.3))"></div>
+ <div style="font-size:11px;font-weight:700;letter-spacing:.14em;color:var(--o)">vs O QUE VOCÊ PAGA</div>
+ <div style="flex:1;height:1px;background:linear-gradient(90deg,rgba(255,123,5,.3),transparent)"></div>
+ </div>
+
+  <!-- Preço final -->
+ <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 14px;background:linear-gradient(135deg,rgba(255,123,5,0.14),rgba(13,10,24,0.95));border:2px solid rgba(255,123,5,.45)">
+  <div>
+   <div style="font-size:11px;font-weight:700;letter-spacing:.12em;color:var(--muted);margin-bottom:3px">RAIO-X COMPLETO DO TEU DELIVERY</div>
+   <div style="font-size:14px;color:var(--sub)">12x de <strong style="color:var(--text);font-size:16px">R$15,20</strong></div>
+   <div style="font-size:12px;color:var(--muted)">ou à vista por</div>
+  </div>
+  <div style="text-align:right">
+   <div style="font-family:'Bebas Neue',sans-serif;font-size:52px;line-height:1;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 12px rgba(255,123,5,.5))">R$147</div>
+   <div style="font-size:10px;font-weight:700;letter-spacing:.1em;color:#39FF14;text-shadow:0 0 8px rgba(57,255,20,.3)">71× MAIS BARATO QUE CONTINUAR SEM ESTRUTURA</div>
+  </div>
+ </div>
+
+ <!-- CHECKLIST COMPLETO -->
+ <div class="checklist fu" style="max-width:500px;margin:0 auto 28px;transition-delay:.16s;width:100%">
+ <div class="cl-item"><div class="cl-check">✓</div><div><strong style="color:var(--text)">Análise completa da operação</strong><br><span style="font-size:12px;color:var(--muted)">Cardápio, preço, margem, aquisição e retenção</span></div></div>
+ <div class="cl-item"><div class="cl-check">✓</div><div><strong style="color:var(--text)">Plano de ação personalizado</strong><br><span style="font-size:12px;color:var(--muted)">As 2 ou 3 correções que mais impactam agora</span></div></div>
+ <div class="cl-item"><div class="cl-check">✓</div><div><strong style="color:var(--text)">Direcionamento para aumentar as vendas</strong><br><span style="font-size:12px;color:var(--muted)">Estratégia clara para escalar sem trabalhar mais</span></div></div>
+ <div class="cl-item"><div class="cl-check">✓</div><div><strong style="color:var(--text)">Chamada de vídeo individual</strong><br><span style="font-size:12px;color:var(--muted)">Sessão 1:1 para revisar o análise e tirar dúvidas</span></div></div>
+ <div class="cl-item"><div class="cl-check">✓</div><div><strong style="color:var(--text)">Suporte via WhatsApp</strong><br><span style="font-size:12px;color:var(--muted)">Acompanhamento direto durante a implementação</span></div></div>
+ <div class="cl-item"><div class="cl-check">✓</div><div><strong style="color:var(--text)">Entrega em até 48h</strong><br><span style="font-size:12px;color:var(--muted)">Análise completa em PDF após confirmação do pagamento</span></div></div>
+ <div class="cl-item">
+ <div class="cl-check">🎁</div>
+ <div><strong style="color:#39FF14;text-shadow:0 0 8px rgba(57,255,20,.3)">+ 2 Bônus exclusivos</strong><br><span style="font-size:12px;color:var(--muted)">Materiais complementares para acelerar seus resultados</span></div>
+ </div>
+ </div>
+
+ <div class="cta-wrap fu" style="transition-delay:.22s">
+ <a href="https://pay.kiwify.com.br/IV7aFfp" aria-label="Comprar Raio-X Estratégico do Delivery por R$147" class="cta">
+ <span style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center">
+ <span>QUERO O RAIO-X AGORA</span>
+ <span style="font-size:20px;font-weight:400">→</span>
+ </span>
+ </a>
+ <p class="cta-note">R$147 à vista · 12x de R$15,20 · ⚡ Apenas 4 vagas restantes</p>
+ </div>
+
+ <!-- GARANTIA VISÍVEL -->
+ <div class="fu" style="transition-delay:.28s;max-width:500px;margin:24px auto 0;overflow:hidden;border:1px solid rgba(57,255,20,0.3);box-shadow:0 0 40px rgba(57,255,20,0.08)">
+
+ <!-- Top bar -->
+ <div style="background:rgba(57,255,20,0.12);padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:10px;border-bottom:1px solid rgba(57,255,20,0.2)">
+ <span style="font-size:14px">🛡️</span>
+ <span style="font-size:10px;font-weight:800;letter-spacing:.2em;color:#39FF14;text-shadow:0 0 10px rgba(57,255,20,.5)">SATISFAÇÃO GARANTIDA — 7 DIAS</span>
+ </div>
+
+ <!-- Body -->
+ <div style="background:linear-gradient(135deg,rgba(57,255,20,0.05),rgba(8,6,14,0.98));padding:20px 24px;display:flex;align-items:flex-start;gap:20px">
+
+ <!-- Selo -->
+ <div style="flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:4px">
+ <div style="width:68px;height:68px;position:relative;display:flex;align-items:center;justify-content:center">
+ <!-- Outer ring -->
+ <div style="position:absolute;inset:0;border-radius:50%;border:2px solid rgba(57,255,20,0.4);box-shadow:0 0 16px rgba(57,255,20,0.3),inset 0 0 16px rgba(57,255,20,0.08)"></div>
+ <!-- Inner fill -->
+ <div style="width:52px;height:52px;border-radius:50%;background:radial-gradient(circle,rgba(57,255,20,0.18),rgba(57,255,20,0.04));display:flex;align-items:center;justify-content:center;font-size:26px;filter:drop-shadow(0 0 8px rgba(57,255,20,.6))">✓</div>
+ </div>
+ <div style="font-size:8px;font-weight:800;letter-spacing:.12em;color:rgba(57,255,20,.7);text-align:center">GARANTIDO</div>
+ </div>
+
+ <!-- Texto -->
+ <div>
+ <div style="font-size:15px;font-weight:700;color:#fff;margin-bottom:8px;line-height:1.35">
+ Se você aplicar o que entregamos e não sentir resultado, <span style="color:#39FF14">devolvemos tudo.</span>
+ </div>
+ <div style="font-size:13px;color:var(--muted);line-height:1.65">
+ Confiamos tanto no valor do que entregamos que assumimos o risco. 7 dias corridos a partir da compra — sem pergunta, sem burocracia, sem enrolação.
+ </div>
+ </div>
+ </div>
+
+ </div>
+ </div>
+</section>
+
+
+<section id="ajustes">
+ <div class="w">
+ <p class="lbl fu">O que muda tudo</p>
+ <h2 class="display fu" style="font-size:clamp(38px,8vw,72px);margin-bottom:8px">
+ 3 ajustes. <span class="accent">No lugar certo.</span>
+ </h2>
+ <p class="fu" style="color:var(--muted);font-size:16px;margin-bottom:36px;transition-delay:.06s">
+ Simples na execução. Impossíveis de ignorar nos resultados.
+ </p>
+
+ <div class="steps fu" style="transition-delay:.12s">
+ <div class="step">
+ <div class="step-num">1</div>
+ <div class="step-body">
+ <div class="step-title">Estrutura de aquisição</div>
+ <div class="step-desc">Pedidos chegando todos os dias — sem depender de sorte, promoção ou algoritmo de plataforma.</div>
+ <div class="step-badge">⚡ PEDIDOS TODOS OS DIAS</div>
+ </div>
+ </div>
+ <div class="step">
+ <div class="step-num">2</div>
+ <div class="step-body">
+ <div class="step-title">Cardápio que vende</div>
+ <div class="step-desc">Estrutura de produtos que aumenta conversão e ticket médio. Cada item do menu trabalhando a favor do faturamento.</div>
+ <div class="step-badge">💰 MAIS TICKET MÉDIO</div>
+ </div>
+ </div>
+ <div class="step">
+ <div class="step-num">3</div>
+ <div class="step-body">
+ <div class="step-title">Precificação com margem real</div>
+ <div class="step-desc">Preço certo que protege sua margem e ainda vende mais. Fim da dependência de desconto pra girar.</div>
+ <div class="step-badge">📈 LUCRO REAL</div>
+ </div>
+ </div>
+ </div>
+ </div>
+ 
+ <div style="display:flex;justify-content:center;margin-top:36px" class="fu">
+ <a href="#preco"
+ style="
+ display:inline-flex;align-items:center;gap:12px;
+ background:linear-gradient(135deg,#FF7B05 0%,#FF9F05 100%);
+ color:#1A0800;
+ font-family:Barlow,sans-serif;font-size:15px;font-weight:800;
+ letter-spacing:.08em;text-transform:uppercase;text-decoration:none;
+ padding:16px 36px;border:none;cursor:pointer;
+ border-radius:4px;
+ box-shadow:0 0 24px rgba(255,123,5,0.6),0 0 50px rgba(255,123,5,0.25),0 4px 16px rgba(0,0,0,0.4);
+ animation:cta-pulse-org 2.8s ease-in-out infinite;
+ ">
+ <svg width="18" height="18" viewBox="0 0 24 24" fill="#1A0800" style="flex-shrink:0">
+ <circle cx="11" cy="11" r="8" stroke="#1A0800" stroke-width="2" fill="none"/>
+ <line x1="21" y1="21" x2="16.65" y2="16.65" stroke="#1A0800" stroke-width="2.5" stroke-linecap="round"/>
+ <line x1="11" y1="8" x2="11" y2="14" stroke="#1A0800" stroke-width="2" stroke-linecap="round"/>
+ <line x1="8" y1="11" x2="14" y2="11" stroke="#1A0800" stroke-width="2" stroke-linecap="round"/>
+ </svg>
+ <span>Ver como funciona o Raio-X</span>
+ </a>
+ </div>
+</section>
+
+
+<section id="perda">
+ <div class="w">
+ <p class="lbl fu" style="color:var(--r)">O custo do silêncio</p>
+ <h2 class="display fu" style="font-size:clamp(34px,7vw,64px);margin-bottom:8px;transition-delay:.04s">
+ Agora pensa comigo.
+ </h2>
+
+ <p class="perda-question fu" style="transition-delay:.08s">
+ Se isso está errado no teu delivery <span class="perda-highlight">hoje…</span>
+ </p>
+ <p class="perda-question fu" style="transition-delay:.12s">
+ 👉 quanto dinheiro isso <span class="perda-highlight">já te custou</span> até agora?
+ </p>
+
+ <div class="money-drain holo-surf fu" style="transition-delay:.18s">
+ <div class="drain-label">estimativa de perda mensal sem estrutura</div>
+ <div class="drain-val" id="drainCounter">R$ 0</div>
+ <div class="drain-sub">clique para ver a conta real</div>
+ </div>
+
+ <p class="perda-question fu" style="transition-delay:.24s">
+ 👉 e quanto vai continuar custando… <span class="perda-highlight">se nada mudar?</span>
+ </p>
+
+ <div class="al fu" style="font-size:20px;font-weight:700;margin-top:24px;transition-delay:.3s">
+ <strong>Se você não sabe onde está o problema… você não tem como crescer.</strong>
+ </div>
+ </div>
+</section>
+
+<div class="sep"></div>
+<div class="sep"></div>
+<div class="sep"></div>
+
+<section id="objecoes" style="background:var(--surf)">
+ <div class="w">
+ <p class="lbl fu">Você provavelmente está pensando…</p>
+ <h2 class="display fu" style="font-size:clamp(28px,4.5vw,46px);margin-bottom:32px;transition-delay:.04s">
+ Antes de fechar, <span class="accent">precisa ver isso.</span>
+ </h2>
+ <div style="display:flex;flex-direction:column;gap:12px" class="fu" style="transition-delay:.08s">
+
+ <div style="padding:22px 24px;background:linear-gradient(135deg,rgba(255,123,5,0.06),rgba(13,10,24,0.95));border:none;box-shadow:0 0 0 1px rgba(255,123,5,0.07),0 0 20px rgba(255,123,5,0.04);clip-path:polygon(0 0,100% 0,calc(100% - 14px) 100%,0 100%);position:relative">
+ <div style="font-size:13px;font-weight:700;letter-spacing:.12em;color:var(--o);margin-bottom:8px;text-shadow:0 0 8px rgba(255,123,5,.4)">❝ Já tentei consultoria antes e não funcionou ❞</div>
+ <div style="font-size:14px;color:var(--sub);line-height:1.65">Faz sentido desconfiar. Consultoria genérica não funciona porque analisa o mercado, não <em>o seu</em> delivery. O Raio-X entra direto na sua operação — cardápio, preço, aquisição — e aponta o que está travando <strong style="color:var(--text)">especificamente no seu caso</strong>. Não é template. É análise cirúrgico.</div>
+ </div>
+
+ <div style="padding:22px 24px;background:linear-gradient(135deg,rgba(255,123,5,0.06),rgba(13,10,24,0.95));border:none;box-shadow:0 0 0 1px rgba(255,123,5,0.07),0 0 20px rgba(255,123,5,0.04);clip-path:polygon(0 0,100% 0,calc(100% - 14px) 100%,0 100%)">
+ <div style="font-size:13px;font-weight:700;letter-spacing:.12em;color:var(--o);margin-bottom:8px;text-shadow:0 0 8px rgba(255,123,5,.4)">❝ Não tenho tempo para implementar mais uma coisa ❞</div>
+ <div style="font-size:14px;color:var(--sub);line-height:1.65">Exatamente por isso o Raio-X existe. Em vez de jogar 10 coisas para você fazer, ele identifica <strong style="color:var(--text)">as 1 ou 2 correções que mais impactam</strong> o seu faturamento agora. Você aplica o que importa, no lugar certo, sem desperdiçar energia.</div>
+ </div>
+
+ <div style="padding:22px 24px;background:linear-gradient(135deg,rgba(255,123,5,0.06),rgba(13,10,24,0.95));border:none;box-shadow:0 0 0 1px rgba(255,123,5,0.07),0 0 20px rgba(255,123,5,0.04);clip-path:polygon(0 0,100% 0,calc(100% - 14px) 100%,0 100%)">
+ <div style="font-size:13px;font-weight:700;letter-spacing:.12em;color:var(--o);margin-bottom:8px;text-shadow:0 0 8px rgba(255,123,5,.4)">❝ R$147 é barato demais, deve ser superficial ❞</div>
+ <div style="font-size:14px;color:var(--sub);line-height:1.65">Esse valor é de entrada estratégica para eliminar risco do seu lado. Uma análise completa cobrada separado passa de R$1.500. Você paga R$147 — e tem garantia de 7 dias. Se não encontrarmos nada, devolvemos tudo. <strong style="color:var(--text)">Zero risco do seu lado.</strong></div>
+ </div>
+
+ <div style="padding:22px 24px;background:linear-gradient(135deg,rgba(255,123,5,0.06),rgba(13,10,24,0.95));border:none;box-shadow:0 0 0 1px rgba(255,123,5,0.07),0 0 20px rgba(255,123,5,0.04);clip-path:polygon(0 0,100% 0,calc(100% - 14px) 100%,0 100%)">
+ <div style="font-size:13px;font-weight:700;letter-spacing:.12em;color:var(--o);margin-bottom:8px;text-shadow:0 0 8px rgba(255,123,5,.4)">❝ E se a análise mostrar que preciso investir muito dinheiro? ❞</div>
+ <div style="font-size:14px;color:var(--sub);line-height:1.65">O Raio-X foca nas correções de <strong style="color:var(--text)">maior impacto com menor esforço</strong>. As principais alavancas de faturamento em delivery raramente exigem investimento — exigem reposicionamento. Precificação, cardápio e aquisição: tudo que você já tem, usado da forma certa.</div>
+ </div>
+
+ </div>
+
+ <div style="display:flex;justify-content:center;margin-top:28px" class="fu">
+ <a href="https://wa.me/5551989991033?text=Ol%C3%A1%20Jonas%2C%20quero%20saber%20mais%20sobre%20o%20Raio-X%20do%20meu%20delivery"
+ target="_blank" rel="noopener"
+ style="
+ display:inline-flex;align-items:center;gap:12px;
+ background:#1DB954;
+ background:linear-gradient(135deg,#20C95E 0%,#128C3E 100%);
+ color:#fff;
+ font-family:Barlow,sans-serif;font-size:16px;font-weight:800;
+ letter-spacing:.06em;text-transform:uppercase;text-decoration:none;
+ padding:17px 36px;border:none;cursor:pointer;
+ border-radius:4px;
+ box-shadow:0 0 28px rgba(37,211,102,0.7),0 0 60px rgba(37,211,102,0.35),0 4px 20px rgba(0,0,0,0.4);
+ animation:cta-pulse-wpp 2.2s ease-in-out infinite;
+ position:relative;overflow:hidden;
+ ">
+ <svg width="22" height="22" viewBox="0 0 24 24" fill="white" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+ <span>Falar com Jonas no WhatsApp</span>
+ </a>
+ </div>
+ </div>
+</section>
+
+<div class="sep"></div>
+
+<section id="pressao">
+ <div class="w">
+ <p class="lbl fu" style="color:var(--r)">Atenção · apenas esta semana</p>
+
+ <!-- ESCASSEZ COM VAGAS -->
+ <div class="fu" style="margin-bottom:32px;border:1px solid rgba(255,42,26,0.4);overflow:hidden;box-shadow:0 0 40px rgba(255,42,26,0.12)">
+ <div style="background:rgba(255,42,26,0.92);padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:10px">
+ <div style="width:8px;height:8px;border-radius:50%;background:#fff;animation:blink 0.8s ease-in-out infinite;flex-shrink:0"></div>
+ <div style="font-size:11px;font-weight:800;letter-spacing:.16em;color:#fff;text-align:center">ATENÇÃO · VAGAS LIMITADAS ESTA SEMANA</div>
+ </div>
+ <div style="background:linear-gradient(135deg,rgba(255,42,26,0.1),rgba(13,10,24,0.97));padding:24px 20px;display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+ <div style="text-align:center;flex-shrink:0">
+ <div id="vagasNum" style="font-family:'Bebas Neue',sans-serif;font-size:88px;line-height:0.9;color:#FF2A1A;text-shadow:0 0 30px rgba(255,42,26,.8),0 0 60px rgba(255,42,26,.3);transition:opacity .3s ease,transform .3s ease">5</div>
+ <div id="vagasLbl" style="font-size:10px;font-weight:800;letter-spacing:.18em;color:rgba(255,42,26,.85);margin-top:6px">VAGAS RESTANTES</div>
+ </div>
+ <div style="width:1px;height:72px;background:rgba(255,42,26,.3);flex-shrink:0"></div>
+ <div style="flex:1;min-width:160px">
+ <div id="vagasText" style="font-size:17px;font-weight:800;color:var(--text);margin-bottom:8px;line-height:1.3">Apenas 5 análises por semana.<br><span style="color:#FF2A1A">Vagas esgotadas, próxima turma.</span></div>
+ <div style="font-size:13px;color:var(--muted);line-height:1.6">Cada Raio-X exige dedicação individual. Não é automático. Por isso o número é limitado — e por isso funciona.</div>
+ </div>
+ </div>
+ <div style="background:rgba(255,42,26,0.08);border-top:1px solid rgba(255,42,26,.2);padding:12px 20px;display:flex;align-items:center;justify-content:center;gap:8px">
+ <span style="font-size:16px">⏰</span>
+ <span style="font-size:12px;font-weight:700;color:rgba(255,42,26,.9);letter-spacing:.06em">A disponibilidade é limitada pela capacidade de análise individual</span>
+ </div>
+ </div>
+
+ <h2 class="display fu" style="font-size:clamp(34px,7vw,62px);margin-bottom:20px;transition-delay:.04s">
+ Se você sair dessa página…
+ </h2>
+ <p class="fu" style="font-size:19px;color:var(--sub);transition-delay:.08s">Amanhã você acorda…</p>
+ <div class="pressao-list fu" style="transition-delay:.12s">
+ <div class="pi">Com os mesmos problemas — sem saber de onde vêm</div>
+ <div class="pi">Com os mesmos gargalos — sem saber como corrigir</div>
+ <div class="pi">Com o mesmo faturamento travado — enquanto outros escalam</div>
+ <div class="pi">Sem clareza sobre o que corrigir enquanto outros avançam</div>
+ </div>
+ <div class="sep-short fu" style="transition-delay:.18s"></div>
+ <h3 class="display fu" style="font-size:clamp(28px,5vw,46px);margin-bottom:14px;transition-delay:.22s">
+ A questão não é se funciona.<br>A questão é:
+ </h3>
+ <div class="al fu" style="font-size:clamp(18px,2.5vw,22px);font-weight:700;transition-delay:.28s">
+ <strong>Quanto tempo você vai continuar operando sem saber exatamente o que está travando?</strong>
+ </div>
+ </div>
+</section>
+
+<div class="sep"></div>
+
+<section id="fech">
+ <div class="w" style="position:relative;z-index:1">
+ <p class="lbl fu" style="justify-content:center">Decisão final</p>
+ <h2 class="display fech-h fu" style="transition-delay:.06s">
+ Chega de ver outros
+ <span class="accent">crescerem enquanto você travado.</span>
+ </h2>
+ <p class="fu" style="color:var(--sub);font-size:18px;margin-bottom:20px;max-width:500px;margin-left:auto;margin-right:auto;transition-delay:.12s">
+ Você trabalhou muito — agora é hora de trabalhar com mais clareza.<br>
+ Agora é hora de trabalhar com clareza.
+ </p>
+
+ <!-- MANIFESTO antes do CTA -->
+ <div class="fu" style="transition-delay:.15s;max-width:480px;margin:0 auto 32px;padding:20px 24px;background:rgba(255,123,5,0.06);border:1px solid rgba(255,123,5,0.2);clip-path:polygon(10px 0,100% 0,calc(100% - 10px) 100%,0 100%);text-align:left">
+ <div style="font-size:13px;font-weight:700;letter-spacing:.14em;color:var(--o);margin-bottom:10px;text-shadow:0 0 8px rgba(255,123,5,.4)">ANTES DE CLICAR, AFIRME:</div>
+ <div style="font-size:15px;color:var(--sub);line-height:1.7">
+ <div style="margin-bottom:6px">✦ Meu trabalho <strong style="color:var(--text)">merece dar resultado</strong></div>
+ <div style="margin-bottom:6px">✦ Chegar a ter clareza sobre <strong style="color:var(--text)">direcionamento preciso</strong></div>
+ <div>✦ Vou entender <strong style="color:var(--text)">o que está limitando o crescimento</strong> do meu delivery</div>
+ </div>
+ </div>
+
+ <div class="cta-wrap fu" style="transition-delay:.2s">
+ <a href="https://pay.kiwify.com.br/IV7aFfp" aria-label="Comprar Raio-X Estratégico do Delivery por R$147" class="cta" style="font-size:clamp(16px,2.2vw,20px);padding:24px 48px">
+ Quero entender o que está travando meu delivery
+ <span style="font-size:22px">→</span>
+ </a>
+ <p class="cta-note" style="margin-top:16px">
+ R$147 · GARANTIA DE 7 DIAS · ANÁLISE INDIVIDUAL · VAGAS LIMITADAS
+ </p>
+ </div>
+ </div>
+</section>
+
+<script>
+/* ── SCROLL OBSERVER ── */
+const isMob=window.innerWidth<768;
+const obs=new IntersectionObserver(e=>e.forEach(n=>{if(n.isIntersecting){n.target.classList.add('v');obs.unobserve(n.target)}}),{threshold:isMob?0:0.08,rootMargin:'0px 0px 0px 0px'});
+document.querySelectorAll('.fu,.fi').forEach(el=>obs.observe(el));
+
+/* ── HERO CANVAS - Particle Network ── */
+(()=>{
+ const cv=document.getElementById('hero-canvas');
+ const ctx=cv.getContext('2d');
+ let W,H,pts=[];
+ const N=window.innerWidth<768?25:60;
+ function resize(){W=cv.width=innerWidth;H=cv.height=Math.max(window.innerHeight*0.85,400);cv.style.height=H+"px"}
+ function init(){
+ pts=[];
+ for(let i=0;i<N;i++) pts.push({
+ x:Math.random()*W,y:Math.random()*H,
+ vx:(Math.random()-.5)*0.35,vy:(Math.random()-.5)*0.35,
+ r:Math.random()*1.5+0.5
+ });
+ }
+ resize();init();
+ window.addEventListener('resize',()=>{resize();init()});
+ function draw(){
+ ctx.clearRect(0,0,W,H);
+ pts.forEach(p=>{
+ p.x+=p.vx;p.y+=p.vy;
+ if(p.x<0||p.x>W)p.vx*=-1;
+ if(p.y<0||p.y>H)p.vy*=-1;
+ });
+ for(let i=0;i<pts.length;i++){
+ for(let j=i+1;j<pts.length;j++){
+ const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y;
+ const d=Math.sqrt(dx*dx+dy*dy);
+ if(d<140){
+ const a=(1-d/140)*0.18;
+ ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);
+ ctx.strokeStyle=`rgba(255,123,5,${a})`;ctx.lineWidth=0.5;ctx.stroke();
+ }
+ }
+ }
+ pts.forEach(p=>{
+ ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+ ctx.fillStyle='rgba(255,123,5,0.35)';ctx.fill();
+ });
+ requestAnimationFrame(draw);
+ }
+ draw();
+})();
+
+/* ── KPI COUNTERS ── */
+function animCount(el,end,prefix='',suffix='',dur=2000){
+ let start=null;
+ const step=ts=>{
+ if(!start)start=ts;
+ const p=Math.min((ts-start)/dur,1);
+ const eased=1-Math.pow(1-p,3);
+ const val=Math.round(eased*end);
+ el.textContent=prefix+(val>=1000?val.toLocaleString('pt-BR'):val)+suffix;
+ if(p<1)requestAnimationFrame(step);
+ };
+ requestAnimationFrame(step);
+}
+const heroObs=new IntersectionObserver(e=>{
+ if(e[0].isIntersecting){
+ // 73% dos deliveries fecham no vermelho sem saber o porquê
+ animCount(document.getElementById('k1'),73,'','');
+ // R$48k de potencial não explorado (média identificada)
+ const k2v=document.getElementById('k2v');
+ if(k2v)animCount(k2v,48,'','');
+ // 3x mais resultado com estrutura
+ animCount(document.getElementById('k3'),3,'','');
+ heroObs.disconnect();
+ }
+},{threshold:0.3});
+heroObs.observe(document.getElementById('hero'));
+
+/* ── LINE CHART — animated with real milestones ── */
+(()=>{
+ const cv=document.getElementById('lineChart');
+ if(!cv)return;
+
+ // data: before phase (flat ~9-10k) then 5 milestone months
+ const PTS=[
+ {v:10, m:true, lbl:['Mês 1','R$10k'], isLast:false, isStart:true},
+ {v:72, m:true, lbl:['Mês 2','R$72k'], isLast:false},
+ {v:93, m:true, lbl:['Mês 3','R$93k'], isLast:false},
+ {v:98, m:true, lbl:['Mês 4','R$98k'], isLast:false},
+ {v:136,m:true, lbl:['Mês 5','R$136k'], isLast:true},
+ ];
+ const SPLIT=0; // no before phase — line starts at index 0
+ const MAXV=155;
+ const H=window.innerWidth<768?180:240;
+
+ function initChart(){
+ const dpr=devicePixelRatio||1;
+ const rect=cv.getBoundingClientRect();
+ const W=rect.width||cv.parentElement.clientWidth||320;
+ cv.width=Math.round(W*dpr);
+ cv.height=Math.round(H*dpr);
+ cv.style.width=W+'px';
+ cv.style.height=H+'px';
+ return {ctx:cv.getContext('2d'), W, dpr};
+ }
+
+ function drawChart(progress){
+ const {ctx,W,dpr}=initChart();
+ ctx.scale(dpr,dpr);
+
+ const N=PTS.length;
+ const pL=52,pR=18,pT=36,pB=28;
+ const cW=W-pL-pR, cH=H-pT-pB;
+ const xP=i=>pL+i*(cW/(N-1));
+ const yP=v=>pT+cH-((v/MAXV)*cH);
+ const drawn=progress*(N-1); // 0 → N-1
+
+ // ── grid ──
+ [0,50,100,150].forEach(v=>{
+ const y=yP(v);
+ ctx.beginPath();ctx.moveTo(pL,y);ctx.lineTo(pL+cW,y);
+ ctx.strokeStyle='rgba(255,255,255,0.05)';ctx.lineWidth=1;ctx.stroke();
+ if(v>0){
+ ctx.fillStyle='rgba(122,113,138,0.7)';
+ ctx.font='bold 10px Barlow,sans-serif';ctx.textAlign='right';
+ ctx.fillText('R$'+v+'k',pL-6,y+4);
+ }
+ });
+
+ // ── vertical divider at SPLIT ──
+ const divX=xP(SPLIT);
+ ctx.setLineDash([4,5]);
+ ctx.beginPath();ctx.moveTo(divX,pT-16);ctx.lineTo(divX,pT+cH);
+ ctx.strokeStyle='rgba(255,123,5,0.3)';ctx.lineWidth=1;ctx.stroke();
+ ctx.setLineDash([]);
+ ctx.font='bold 8px Barlow,sans-serif';ctx.textAlign='center';
+ ctx.fillStyle='rgba(255,123,5,0.6)';
+ ctx.fillText('▼ RAIO-X',divX,pT-5);
+
+ // helper: get interpolated point along the full data path
+ function ptAt(frac){
+ const i=Math.floor(frac);
+ const t=frac%1;
+ if(i>=N-1) return {x:xP(N-1),y:yP(PTS[N-1].v)};
+ return {x:xP(i)+t*(xP(i+1)-xP(i)), y:yP(PTS[i].v+t*(PTS[i+1].v-PTS[i].v))};
+ }
+
+ // ── BEFORE segment: i=0 → min(drawn, SPLIT) ──
+ const beforeEnd=Math.min(drawn,SPLIT);
+ if(beforeEnd>0.01){
+ const steps=Math.ceil(beforeEnd*10);
+ ctx.beginPath();
+ ctx.moveTo(xP(0),yP(PTS[0].v));
+ for(let s=1;s<=steps;s++){
+ const f=Math.min(s/10,beforeEnd);
+ const p=ptAt(f);
+ ctx.lineTo(p.x,p.y);
+ }
+ // area
+ const ep=ptAt(beforeEnd);
+ ctx.lineTo(ep.x,pT+cH);ctx.lineTo(xP(0),pT+cH);ctx.closePath();
+ const gb=ctx.createLinearGradient(0,pT,0,pT+cH);
+ gb.addColorStop(0,'rgba(255,42,26,0.18)');gb.addColorStop(1,'rgba(255,42,26,0)');
+ ctx.fillStyle=gb;ctx.fill();
+ // line
+ ctx.beginPath();ctx.moveTo(xP(0),yP(PTS[0].v));
+ for(let s=1;s<=steps;s++){
+ const f=Math.min(s/10,beforeEnd);
+ const p=ptAt(f);ctx.lineTo(p.x,p.y);
+ }
+ ctx.strokeStyle='rgba(255,55,20,0.65)';ctx.lineWidth=2.5;
+ ctx.lineCap='round';ctx.lineJoin='round';
+ ctx.shadowColor='rgba(255,42,26,0.35)';ctx.shadowBlur=6;
+ ctx.stroke();ctx.shadowBlur=0;
+ }
+
+ // ── AFTER segment: SPLIT → min(drawn, N-1) ──
+ if(drawn>SPLIT){
+ const afterEnd=Math.min(drawn,N-1);
+ const steps=Math.ceil((afterEnd-SPLIT)*10);
+
+ // gradient left→right for line color
+ const gl=ctx.createLinearGradient(xP(SPLIT),0,xP(N-1),0);
+ gl.addColorStop(0,'#FF7B05');gl.addColorStop(0.5,'#FF9F05');gl.addColorStop(1,'#39FF14');
+
+ // area
+ ctx.beginPath();
+ ctx.moveTo(xP(SPLIT),yP(PTS[SPLIT].v));
+ for(let s=1;s<=steps;s++){
+ const f=Math.min(SPLIT+s/10,afterEnd);
+ const p=ptAt(f);ctx.lineTo(p.x,p.y);
+ }
+ const ep=ptAt(afterEnd);
+ ctx.lineTo(ep.x,pT+cH);ctx.lineTo(xP(SPLIT),pT+cH);ctx.closePath();
+ const ga=ctx.createLinearGradient(xP(SPLIT),0,xP(N-1),0);
+ ga.addColorStop(0,'rgba(255,123,5,0.28)');ga.addColorStop(1,'rgba(57,255,20,0.12)');
+ ctx.fillStyle=ga;ctx.fill();
+
+ // glow pass
+ ctx.beginPath();ctx.moveTo(xP(SPLIT),yP(PTS[SPLIT].v));
+ for(let s=1;s<=steps;s++){
+ const f=Math.min(SPLIT+s/10,afterEnd);
+ const p=ptAt(f);ctx.lineTo(p.x,p.y);
+ }
+ ctx.strokeStyle=gl;ctx.lineWidth=6;ctx.lineCap='round';ctx.lineJoin='round';
+ ctx.shadowColor='rgba(255,123,5,0.6)';ctx.shadowBlur=16;
+ ctx.globalAlpha=0.35;ctx.stroke();ctx.globalAlpha=1;
+
+ // main line
+ ctx.beginPath();ctx.moveTo(xP(SPLIT),yP(PTS[SPLIT].v));
+ for(let s=1;s<=steps;s++){
+ const f=Math.min(SPLIT+s/10,afterEnd);
+ const p=ptAt(f);ctx.lineTo(p.x,p.y);
+ }
+ ctx.strokeStyle=gl;ctx.lineWidth=2.5;
+ ctx.shadowColor='rgba(255,159,5,0.8)';ctx.shadowBlur=10;
+ ctx.stroke();ctx.shadowBlur=0;
+
+ // leading pulse dot
+ const lp=ptAt(afterEnd);
+ const t01=(afterEnd-SPLIT)/(N-1-SPLIT);
+ const dc=t01>0.85?'#39FF14':'#FF9F05';
+ const gc=t01>0.85?'rgba(57,255,20,1)':'rgba(255,159,5,1)';
+ ctx.beginPath();ctx.arc(lp.x,lp.y,5,0,Math.PI*2);
+ ctx.fillStyle=dc;ctx.shadowColor=gc;ctx.shadowBlur=20;ctx.fill();ctx.shadowBlur=0;
+ }
+
+ // ── milestone badges ──
+ PTS.forEach((p,i)=>{
+ if(!p.m)return;
+ const appear=Math.max(0,Math.min(1,(drawn-i+0.4)/0.5));
+ if(appear<=0)return;
+ ctx.globalAlpha=appear;
+ const x=xP(i),y=yP(p.v);
+ const dotC=p.isLast?'#39FF14':'#FF9F05';
+ const glwC=p.isLast?'rgba(57,255,20,0.9)':'rgba(255,159,5,0.9)';
+
+ // dot + ring
+ ctx.beginPath();ctx.arc(x,y,p.isLast?6:4,0,Math.PI*2);
+ ctx.fillStyle=dotC;ctx.shadowColor=glwC;ctx.shadowBlur=p.isLast?18:10;
+ ctx.fill();ctx.shadowBlur=0;
+ ctx.beginPath();ctx.arc(x,y,p.isLast?11:8,0,Math.PI*2);
+ ctx.strokeStyle=p.isLast?'rgba(57,255,20,0.3)':'rgba(255,159,5,0.3)';
+ ctx.lineWidth=1.5;ctx.stroke();
+
+ // badge — texto flutuante sem caixa
+ const bY=y-42;
+ ctx.textAlign='center';
+ ctx.font='bold 8px Barlow,sans-serif';
+ ctx.fillStyle=p.isLast?'rgba(57,255,20,0.75)':'rgba(255,159,5,0.8)';
+ ctx.shadowBlur=4;ctx.shadowColor=glwC;
+ ctx.fillText(p.lbl[0],x,bY+10);
+ ctx.font='bold 11px Barlow,sans-serif';
+ ctx.fillStyle=dotC;
+ ctx.shadowBlur=8;
+ ctx.fillText(p.lbl[1],x,bY+23);
+ ctx.shadowBlur=0;ctx.globalAlpha=1;
+ });
+ }
+
+ // animate on scroll
+ let started=false;
+ const cObs=new IntersectionObserver(entries=>{
+ if(entries[0].isIntersecting&&!started){
+ started=true;
+ let s=null;const dur=2800;
+ function animate(now){
+ if(!s)s=now;
+ const prog=Math.min((now-s)/dur,1);
+ // easeInOut
+ const ease=prog<0.5?2*prog*prog:1-Math.pow(-2*prog+2,2)/2;
+ drawChart(ease);
+ if(prog<1)requestAnimationFrame(animate);
+ }
+ requestAnimationFrame(animate);
+ cObs.disconnect();
+ }
+ },{threshold:0.25});
+
+ // init after layout is ready — handles WP lazy render on mobile
+ function safeInit(){
+ const rect=cv.getBoundingClientRect();
+ if(rect.width>0){drawChart(0);cObs.observe(cv);}
+ else{setTimeout(safeInit,100);}
+ }
+ requestAnimationFrame(safeInit);
+})();
+
+
+
+/* ── PILARES DE RISCO — cards + donut ── */
+(()=>{
+ // SVG icons inline — sem emojis genéricos
+ const ICONS={
+ aquisicao:`<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+ <circle cx="24" cy="24" r="18" stroke="currentColor" stroke-width="2" opacity=".2"/>
+ <circle cx="24" cy="24" r="11" stroke="currentColor" stroke-width="2" opacity=".4"/>
+ <circle cx="24" cy="24" r="4" fill="currentColor"/>
+ <line x1="24" y1="6" x2="24" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+ <line x1="24" y1="36" x2="24" y2="42" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+ <line x1="6" y1="24" x2="12" y2="24" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+ <line x1="36" y1="24" x2="42" y2="24" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+ <line x1="32" y1="16" x2="36" y2="12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+ </svg>`,
+ cardapio:`<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+ <rect x="8" y="6" width="32" height="36" rx="4" stroke="currentColor" stroke-width="2"/>
+ <line x1="14" y1="16" x2="34" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+ <line x1="14" y1="23" x2="34" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+ <line x1="14" y1="30" x2="26" y2="30" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+ <circle cx="34" cy="34" r="6" fill="currentColor" opacity=".9"/>
+ <line x1="31" y1="34" x2="37" y2="34" stroke="white" stroke-width="2" stroke-linecap="round"/>
+ <line x1="34" y1="31" x2="34" y2="37" stroke="white" stroke-width="2" stroke-linecap="round"/>
+ </svg>`,
+ retencao:`<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+ <path d="M24 8 C16 8 10 14 10 22 C10 30 16 36 24 40 C32 36 38 30 38 22 C38 14 32 8 24 8Z" stroke="currentColor" stroke-width="2" fill="currentColor" fill-opacity=".12"/>
+ <path d="M18 24 L22 28 L30 20" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+ <path d="M36 10 L42 10 M42 10 L38 6 M42 10 L38 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+ </svg>`,
+ margem:`<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+ <circle cx="24" cy="24" r="16" stroke="currentColor" stroke-width="2"/>
+ <text x="24" y="20" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="currentColor">R$</text>
+ <line x1="18" y1="28" x2="30" y2="28" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+ <path d="M20 22 L24 18 L28 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+ <path d="M8 38 L14 32 L20 36 L28 28 L34 32 L40 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity=".5"/>
+ </svg>`,
+ operacao:`<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+ <circle cx="24" cy="24" r="7" stroke="currentColor" stroke-width="2"/>
+ <path d="M24 6 L24 12 M24 36 L24 42 M6 24 L12 24 M36 24 L42 24 M10.3 10.3 L14.6 14.6 M33.4 33.4 L37.7 37.7 M37.7 10.3 L33.4 14.6 M14.6 33.4 L10.3 37.7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+ </svg>`,
+ marketing:`<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+ <path d="M8 18 L8 30 L16 30 L32 40 L32 8 L16 18 Z" stroke="currentColor" stroke-width="2" fill="currentColor" fill-opacity=".15" stroke-linejoin="round"/>
+ <path d="M38 16 C40 18 41 20.8 41 24 C41 27.2 40 30 38 32" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+ <path d="M34 20 C35.2 21.2 36 22.5 36 24 C36 25.5 35.2 26.8 34 28" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+ <line x1="16" y1="30" x2="18" y2="38" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+ </svg>`,
+ };
+
+ const iconKeys=['aquisicao','cardapio','retencao','margem','operacao','marketing'];
+
+ const pilares=[
+ {name:'Aquisição',risco:'CRÍTICO',pct:82,frase:'Sem canal de aquisição previsível de clientes',
+ detalhe:'Você depende de plataforma e de circunstâncias externas. Quando o iFood muda o algoritmo, seu faturamento despenca. Sem aquisição controlada, não existe crescimento previsível.',
+ tag:'→ Pedidos chegando de forma consistente, sem depender de sorte'},
+ {name:'Cardápio',risco:'ALTO',pct:75,frase:'Menu confuso que não converte',
+ detalhe:'Sem âncora de preço, sem combo estratégico, sem destaque no produto de maior margem. O cliente entra, se perde e pede o mais barato — ou fecha sem comprar.',
+ tag:'→ +40% no ticket médio com engenharia de cardápio'},
+ {name:'Retenção',risco:'CRÍTICO',pct:85,frase:'Cliente compra uma vez e some',
+ detalhe:'Não existe follow-up, não existe fidelização, não existe motivo para voltar. Você gasta dinheiro para trazer o cliente e não aproveita nada depois da primeira compra.',
+ tag:'→ LTV 2× maior com retenção estruturada'},
+ {name:'Margem',risco:'ALTO',pct:72,frase:'Preço no chute, custo desconhecido',
+ detalhe:'Sem saber o CMV real, qualquer desconto corrói o que resta. Você vende muito e lucra pouco — ou descobre no fim do mês que trabalhou de graça.',
+ tag:'→ Margem líquida acima de 20% com precificação correta'},
+ {name:'Operação',risco:'MÉDIO',pct:70,frase:'Operação que depende só de você',
+ detalhe:'Processo na cabeça do dono. Qualquer ausência trava tudo. Crescer significa trabalhar mais, não ganhar mais — e você já está no limite.',
+ tag:'→ Capacidade 2× sem aumentar equipe'},
+ {name:'Marketing',risco:'ALTO',pct:80,frase:'Post sem estratégia, sem pedido',
+ detalhe:'Conteúdo sem call-to-action, sem frequência definida, sem gatilho de compra. Você posta, recebe curtida e não gera pedido. Visibilidade sem venda é desperdício.',
+ tag:'→ +60% de conversão com conteúdo direcionado'},
+ ];
+
+ const riscoColor={'CRÍTICO':'#FF2A1A','ALTO':'#FF7B05','MÉDIO':'#FFC107'};
+ const riscoGlow={'CRÍTICO':'rgba(255,42,26,.6)','ALTO':'rgba(255,123,5,.6)','MÉDIO':'rgba(255,193,7,.5)'};
+
+ // ── Rewrite grid as vertical list ──
+ const grid=document.getElementById('pilaresGrid');
+ if(!grid)return;
+
+ // Override grid to be a single column list
+ grid.style.cssText='display:flex;flex-direction:column;gap:3px;';
+
+ pilares.forEach((p,i)=>{
+ const clr=riscoColor[p.risco];
+ const glw=riscoGlow[p.risco];
+ const ico=ICONS[iconKeys[i]];
+ const row=document.createElement('div');
+
+ row.style.cssText=`
+ display:flex;align-items:center;gap:0;
+ background:rgba(13,10,24,0.95);
+ border:1px solid rgba(255,255,255,0.05);
+ border-left:3px solid ${clr};
+ position:relative;overflow:hidden;cursor:pointer;
+ transition:background .25s,box-shadow .25s;
+ `;
+
+ row.innerHTML=`
+ <!-- PCT — grande à esquerda -->
+ <div style="
+ flex-shrink:0;width:76px;padding:18px 0;
+ display:flex;flex-direction:column;align-items:center;justify-content:center;
+ border-right:1px solid rgba(255,255,255,0.05);
+ background:${clr}0a;
+ ">
+ <div style="font-family:'Bebas Neue',sans-serif;font-size:32px;line-height:1;color:${clr};text-shadow:0 0 14px ${glw}">${p.pct}%</div>
+ <div style="font-size:8px;font-weight:700;letter-spacing:.1em;color:${clr}99;margin-top:2px">${p.risco}</div>
+ </div>
+
+ <!-- ICON + CONTENT — centro -->
+ <div style="flex:1;padding:14px 16px;min-width:0">
+ <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+ <div style="width:22px;height:22px;flex-shrink:0;color:${clr};opacity:.85;filter:drop-shadow(0 0 4px ${clr}88)">
+ ${ico}
+ </div>
+ <div style="font-size:15px;font-weight:700;color:#fff">${p.name}</div>
+ </div>
+ <div style="font-size:12px;color:var(--muted);line-height:1.45;margin-bottom:10px">${p.frase}</div>
+ <!-- barra -->
+ <div style="height:3px;background:rgba(255,255,255,.06);overflow:hidden;border-radius:2px">
+ <div class="pilar-bar" data-w="${p.pct}" style="
+ height:100%;width:0;
+ background:linear-gradient(90deg,${clr},${clr}66);
+ box-shadow:0 0 8px ${glw};
+ transition:width 1.4s cubic-bezier(.16,1,.3,1) ${i*0.1}s;
+ "></div>
+ </div>
+ <!-- detail (hidden) -->
+ <div class="card-detail" style="display:none;margin-top:12px;padding-top:10px;border-top:1px solid rgba(255,255,255,.05)">
+ <div style="font-size:12px;color:var(--sub);line-height:1.6;margin-bottom:8px">${p.detalhe}</div>
+ <div style="font-size:11px;font-weight:700;color:var(--o);display:flex;align-items:center;gap:5px">
+ <span>⚡</span>${p.tag}
+ </div>
+ </div>
+ </div>
+
+ <!-- ARROW — direita -->
+ <div class="card-arrow" style="
+ flex-shrink:0;width:40px;display:flex;align-items:center;justify-content:center;
+ font-size:16px;color:${clr}55;padding-right:4px;
+ transition:color .2s,transform .2s;align-self:stretch;
+ ">›</div>
+ `;
+
+ let open=false;
+ row.addEventListener('click',()=>{
+ open=!open;
+ const arrow=row.querySelector('.card-arrow');
+ const detail=row.querySelector('.card-detail');
+ detail.style.display=open?'block':'none';
+ arrow.style.transform=open?'rotate(90deg)':'';
+ arrow.style.color=open?clr:clr+'55';
+ row.style.background=open?`${clr}0d`:'rgba(13,10,24,0.95)';
+ row.style.boxShadow=open?`0 0 20px ${glw}22`:'';
+ });
+ row.addEventListener('mouseenter',()=>{
+ if(!open) row.style.background=`${clr}08`;
+ });
+ row.addEventListener('mouseleave',()=>{
+ if(!open) row.style.background='rgba(13,10,24,0.95)';
+ });
+ grid.appendChild(row);
+ });
+
+ // animate progress bars on scroll
+ let gaugesDrawn=false;
+ const gObs=new IntersectionObserver(e=>{
+ if(e[0].isIntersecting&&!gaugesDrawn){
+ gaugesDrawn=true;
+
+ // Animate horizontal progress bars
+ const bars=document.querySelectorAll('.pilar-bar');
+ bars.forEach((b,i)=>{
+ // Force reflow before animation
+ b.offsetHeight;
+ setTimeout(()=>{ b.style.width=b.dataset.w+'%'; }, 100+i*80);
+ });
+
+ // SCORECARD MINI BARS — vertical bars for each pilar
+ const scorecardEl=document.getElementById('scorecardBars');
+ if(scorecardEl && scorecardEl.childElementCount===0){
+ pilares.forEach((p,i)=>{
+ const clr=riscoColor[p.risco];
+ const glw=riscoGlow[p.risco];
+ const col=document.createElement('div');
+ col.style.cssText='display:flex;flex-direction:column;align-items:center;gap:5px;';
+ col.innerHTML=`
+ <div style="font-family:'Bebas Neue',sans-serif;font-size:14px;line-height:1;color:${clr};text-shadow:0 0 8px ${glw};letter-spacing:.02em">${p.pct}%</div>
+ <div style="width:100%;min-width:32px;height:64px;background:rgba(255,255,255,.04);position:relative;overflow:hidden;clip-path:polygon(0 0,100% 0,100% calc(100% - 4px),calc(100% - 4px) 100%,0 100%)">
+ <div style="position:absolute;bottom:0;left:0;right:0;height:0%;background:linear-gradient(180deg,${clr} 0%,${clr}44 100%);box-shadow:0 -4px 14px ${glw};transition:height 1.3s cubic-bezier(.16,1,.3,1) ${i*0.07}s" data-h="${p.pct}" class="sc-fill"></div>
+ </div>
+ <div style="font-size:8px;font-weight:700;letter-spacing:.07em;color:var(--muted);text-align:center;line-height:1.3;max-width:50px">${p.name.toUpperCase()}</div>`;
+ scorecardEl.appendChild(col);
+ });
+ requestAnimationFrame(()=>requestAnimationFrame(()=>{
+ scorecardEl.querySelectorAll('.sc-fill').forEach(b=>{
+ b.style.height=b.dataset.h+'%';
+ });
+ }));
+ }
+
+ // POTENCIAL counter + DONUT for verdict bar
+ const POTENCIAL=132;
+ const dv=document.getElementById('potencialVal');
+ const dc=document.getElementById('donutCanvas');
+ const avgRisco=Math.round(pilares.reduce((s,p)=>s+p.pct,0)/pilares.length);
+
+ if(dc){
+ const ctx=dc.getContext('2d');
+ const dpr=devicePixelRatio||1;
+ dc.width=96*dpr; dc.height=96*dpr;
+ ctx.scale(dpr,dpr);
+ const cx=48,cy=48,r=38,lw=7;
+ let s3=null; const dur2=1800;
+ function drawD(now){
+ if(!s3)s3=now;
+ const prog=Math.min((now-s3)/dur2,1);
+ const ease=1-Math.pow(1-prog,3);
+ ctx.clearRect(0,0,96,96);
+ // tick marks
+ for(let t=0;t<24;t++){
+ const a=(t/24)*Math.PI*2;
+ ctx.beginPath();
+ ctx.moveTo(cx+Math.cos(a)*(r+4),cy+Math.sin(a)*(r+4));
+ ctx.lineTo(cx+Math.cos(a)*(r+8),cy+Math.sin(a)*(r+8));
+ ctx.strokeStyle='rgba(255,255,255,.07)';ctx.lineWidth=1;ctx.stroke();
+ }
+ // track
+ ctx.beginPath();ctx.arc(cx,cy,r,-Math.PI/2,Math.PI*1.5);
+ ctx.strokeStyle='rgba(255,255,255,.06)';ctx.lineWidth=lw;ctx.stroke();
+ // glow
+ const endA=-Math.PI/2+ease*(avgRisco/100)*Math.PI*2;
+ ctx.beginPath();ctx.arc(cx,cy,r,-Math.PI/2,endA);
+ ctx.strokeStyle='#FF2A1A';ctx.lineWidth=lw+3;ctx.lineCap='round';
+ ctx.shadowColor='rgba(255,42,26,.8)';ctx.shadowBlur=20;ctx.globalAlpha=0.35;ctx.stroke();
+ ctx.globalAlpha=1;
+ // main
+ ctx.beginPath();ctx.arc(cx,cy,r,-Math.PI/2,endA);
+ ctx.strokeStyle='#FF2A1A';ctx.lineWidth=lw;ctx.lineCap='round';
+ ctx.shadowColor='rgba(255,42,26,.7)';ctx.shadowBlur=12;ctx.stroke();
+ ctx.shadowBlur=0;
+ const dp=document.getElementById('donutPct');
+ if(dp)dp.textContent=Math.round(ease*avgRisco)+'%';
+ if(dv)dv.textContent='+'+Math.round(ease*POTENCIAL)+'%';
+ if(prog<1)requestAnimationFrame(drawD);
+ }
+ requestAnimationFrame(drawD);
+ } else if(dv){
+ // fallback if no canvas
+ let s3=null;const dur2=1800;
+ function animPot(now){
+ if(!s3)s3=now;
+ const prog=Math.min((now-s3)/dur2,1);
+ dv.textContent='+'+Math.round((1-Math.pow(1-prog,3))*POTENCIAL)+'%';
+ if(prog<1)requestAnimationFrame(animPot);
+ }
+ requestAnimationFrame(animPot);
+ }
+ gObs.disconnect();
+ }
+ },{threshold:0.2});
+ gObs.observe(grid);
+
+ function checkGrid(){
+ if(!grid)return;
+ const w=window.innerWidth;
+ grid.style.gridTemplateColumns=w<480?'1fr':w<768?'1fr 1fr':'repeat(3,1fr)';
+ }
+ checkGrid();window.addEventListener('resize',checkGrid);
+})();
+
+/* ── HERO LOSS COUNTER — real-time drip ── */
+(()=>{
+ const el=document.getElementById('heroLossCounter');
+ if(!el)return;
+ // R$8,500/month avg → R$283/day → R$11.8/hour → R$0.197/min
+ const perSecond=0.197/60; // per second
+ let total=0;
+ const startTime=Date.now();
+ setInterval(()=>{
+ const elapsed=(Date.now()-startTime)/1000; // seconds
+ total=elapsed*perSecond;
+ el.textContent='R$ '+total.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
+ },100);
+})();
+
+
+
+/* ── MONEY DRAIN COUNTER ── */
+(()=>{
+ const el=document.getElementById('drainCounter');
+ if(!el)return;
+ let triggered=false;
+ const amounts=[3200,5400,7800,11000,14500,18000,22000,27500,33000];
+ let idx=0;
+ const obs=new IntersectionObserver(e=>{
+ if(e[0].isIntersecting&&!triggered){
+ triggered=true;
+ function cycle(){
+ const target=amounts[idx%amounts.length];
+ let cur=0,start=null;
+ const step=ts=>{
+ if(!start)start=ts;
+ const p=Math.min((ts-start)/900,1);
+ cur=Math.round(target*(1-Math.pow(1-p,2)));
+ el.textContent='R$ '+cur.toLocaleString('pt-BR');
+ if(p<1)requestAnimationFrame(step);
+ else{idx++;setTimeout(cycle,300)}
+ };
+ requestAnimationFrame(step);
+ }
+ cycle();
+ }
+ },{threshold:0.5});
+ obs.observe(el);
+ el.style.cursor='pointer';
+ el.addEventListener('click',()=>{
+ idx=0;triggered=false;
+ obs.observe(el);
+ });
+})();
+</script>
+
+</main>
+<footer style="background:#04030A;border-top:1px solid rgba(255,255,255,.06);padding:48px 0 32px">
+ <div class="w">
+
+ <!-- Logo + produto -->
+ <div style="display:flex;align-items:center;gap:14px;margin-bottom:24px">
+ <div style="width:36px;height:36px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:14px;color:#1A0800;font-weight:900;flex-shrink:0">RX</div>
+ <div>
+ <div style="font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--text);letter-spacing:.05em">Raio-X Delivery Lucrativo</div>
+ <div style="font-size:11px;color:var(--muted)">Aurum Gestão Digital Ltda · CNPJ 64.632.202/0001-39</div>
+ </div>
+ </div>
+
+ <!-- Aviso de canal exclusivo -->
+ <div style="background:rgba(255,123,5,0.06);border:1px solid rgba(255,123,5,0.18);padding:16px 20px;margin-bottom:24px;display:flex;align-items:flex-start;gap:12px">
+ <span style="font-size:18px;flex-shrink:0">⚠️</span>
+ <div style="font-size:13px;color:var(--muted);line-height:1.7">
+ <strong style="color:var(--text)">Canal oficial e exclusivo de venda:</strong> O Raio-X Delivery Lucrativo é comercializado exclusivamente por esta página. Desconfie de qualquer outro canal, perfil ou página que ofereça este produto. Em caso de dúvida, entre em contato pelo nosso WhatsApp oficial.
+ </div>
+ </div>
+
+ <!-- Aviso Facebook + plataformas -->
+ <div style="background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);padding:16px 20px;margin-bottom:28px">
+ <div style="font-size:12px;color:var(--muted);line-height:1.8">
+ <strong style="color:rgba(255,255,255,.5)">Aviso de isenção:</strong> Este produto e esta página não têm qualquer vínculo, associação, patrocínio ou afiliação com o Facebook, Instagram, Meta Platforms Inc., Google, iFood, ou qualquer outra plataforma mencionada. Os nomes e logotipos dessas plataformas são marcas registradas de seus respectivos proprietários e são citados apenas para fins descritivos e informativos.
+ </div>
+ </div>
+
+ <!-- Links legais -->
+ <div style="display:flex;gap:20px;flex-wrap:wrap;margin-bottom:28px">
+ <a href="https://ajdeliverylucrativo.com/termos-de-uso" target="_blank" style="font-size:12px;color:var(--muted);text-decoration:underline;text-underline-offset:3px">Termos de Uso</a>
+ <a href="https://ajdeliverylucrativo.com/politica-de-privacidade" target="_blank" style="font-size:12px;color:var(--muted);text-decoration:underline;text-underline-offset:3px">Política de Privacidade</a>
+ <a href="https://wa.me/5551989991033" aria-label="Falar com Jonas no WhatsApp" target="_blank" style="font-size:12px;color:var(--muted);text-decoration:underline;text-underline-offset:3px">Suporte via WhatsApp</a>
+ </div>
+
+ <!-- Aviso de resultados -->
+ <div style="font-size:11px;color:rgba(122,113,138,.6);line-height:1.75;margin-bottom:24px;border-top:1px solid rgba(255,255,255,.04);padding-top:20px">
+ <strong style="color:rgba(122,113,138,.8)">Aviso sobre resultados:</strong> Os resultados apresentados nesta página são baseados em casos reais de clientes e não constituem garantia de resultados idênticos para todos os usuários. Os resultados individuais podem variar de acordo com o perfil do negócio, mercado local, implementação das recomendações e outros fatores externos. O Raio-X Delivery Lucrativo oferece análise e direcionamento estratégico — a implementação e os resultados dependem do comprometimento do cliente. Satisfação garantida em 7 dias conforme política de reembolso.
+ </div>
+
+ <!-- Copyright -->
+ <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+ <div style="font-size:11px;color:rgba(122,113,138,.5)">© 2025 Aurum Gestão Digital Ltda · CNPJ 64.632.202/0001-39 · Todos os direitos reservados.</div>
+ <div style="font-size:11px;color:rgba(122,113,138,.4)">Raio-X Delivery Lucrativo</div>
+ </div>
+
+ </div>
+</footer>
+<script>
+// Erlon image via URL
+(function(){
+  document.querySelectorAll('[data-erlon]').forEach(function(img){
+    img.src="https://i.ibb.co/HLSgHWb5/imagem-2-erlon-equipe.jpg";
+  });
+})();
+</script>
+
+
+
+<script>
+/* ── VAGAS COUNTDOWN EFFECT ── */
+(()=>{
+  var num=document.getElementById('vagasNum');
+  var txt=document.getElementById('vagasText');
+  if(!num)return;
+  var fired=false;
+  var obs=new IntersectionObserver(function(entries){
+    if(entries[0].isIntersecting&&!fired){
+      fired=true;obs.disconnect();
+      setTimeout(function(){
+        num.style.opacity='0';
+        num.style.transform='translateY(-14px) scale(0.8)';
+        setTimeout(function(){
+          num.textContent='4';
+          num.style.transition='none';
+          num.style.transform='translateY(14px) scale(0.8)';
+          num.style.opacity='0';
+          setTimeout(function(){
+            num.style.transition='opacity .35s ease,transform .35s ease';
+            num.style.opacity='1';
+            num.style.transform='translateY(0) scale(1)';
+            if(txt)txt.innerHTML='Apenas 4 análises restantes.<br><span style="color:#FF2A1A">Uma vaga acabou agora.</span>';
+          },60);
+        },320);
+      },1500);
+    }
+  },{threshold:0.7});
+  obs.observe(num);
+})();
+</script>
+
+
+<script>
+(function(){
+  function ytPlayer(id, vid, vertical){
+    var wrap = document.getElementById(id);
+    if(!wrap) return;
+    var thumb = 'https://i.ytimg.com/vi/'+vid+'/'+(vertical?'hqdefault':'maxresdefault')+'.jpg';
+    wrap.style.cssText += 'cursor:pointer;background:#000;';
+    var img = document.createElement('img');
+    img.src = thumb;
+    img.alt = '';
+    img.loading = 'lazy';
+    img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s;position:absolute;top:0;left:0;';
+    wrap.appendChild(img);
+    var btn = document.createElement('div');
+    btn.style.cssText = 'position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:68px;height:68px;background:rgba(0,0,0,0.72);border-radius:50%;display:flex;align-items:center;justify-content:center;border:3px solid rgba(255,123,5,0.9);box-shadow:0 0 28px rgba(255,123,5,0.55);pointer-events:none;transition:transform .2s;';
+    btn.innerHTML = '<svg width="26" height="26" viewBox="0 0 24 24" fill="#FF9F05"><polygon points="5,3 19,12 5,21"/></svg>';
+    wrap.appendChild(btn);
+    wrap.addEventListener('mouseenter',function(){img.style.transform='scale(1.03)';btn.style.transform='translate(-50%,-50%) scale(1.1)';});
+    wrap.addEventListener('mouseleave',function(){img.style.transform='';btn.style.transform='translate(-50%,-50%)';});
+    wrap.addEventListener('click',function(){
+      wrap.innerHTML='';
+      wrap.style.cursor='default';
+      var iframe=document.createElement('iframe');
+      var params='autoplay=1&rel=0&modestbranding=1&playsinline=1&color=white&controls=1';
+      if(vertical) params+='&loop=1&playlist='+vid;
+      iframe.src='https://www.youtube-nocookie.com/embed/'+vid+'?'+params;
+      iframe.allow='autoplay;encrypted-media;picture-in-picture';
+      iframe.allowFullscreen=true;
+      if(vertical){
+        iframe.style.cssText='position:absolute;top:0;left:0;width:100%;height:100%;border:none;';
+      } else {
+        iframe.style.cssText='position:absolute;top:-25%;left:0;width:100%;height:150%;border:none;';
+      }
+      wrap.appendChild(iframe);
+    },{once:true});
+  }
+  document.addEventListener('DOMContentLoaded',function(){
+    ytPlayer('ytVSL','yvE1JVF-_TI',false);
+    ytPlayer('ytDepo1','zCC1epGv0q8',true);
+    ytPlayer('ytDepo2','a-n-u52q1ZI',true);
+  });
+})();
+</script>
+</body>
+</html>
