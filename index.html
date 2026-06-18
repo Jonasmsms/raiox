@@ -1808,7 +1808,7 @@ heroObs.observe(document.getElementById('hero'));
       wrap.innerHTML='';
       wrap.style.cursor='default';
       var iframe=document.createElement('iframe');
-      var params='autoplay=1&rel=0&modestbranding=1&playsinline=1&color=white&controls=1';
+      var params='autoplay=1&rel=0&modestbranding=1&playsinline=1&color=white&controls=0&disablekb=1&iv_load_policy=3&fs=0';
       if(vertical) params+='&loop=1&playlist='+vid;
       iframe.src='https://www.youtube-nocookie.com/embed/'+vid+'?'+params;
       iframe.allow='autoplay;encrypted-media;picture-in-picture';
