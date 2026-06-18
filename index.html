@@ -1853,6 +1853,19 @@ heroObs.observe(document.getElementById('hero'));
       }
 
       var isPlaying = true;
+      ppBtn.style.transition = 'opacity .35s ease, transform .35s ease';
+
+      function hideBtn(){
+        ppBtn.style.opacity = '0';
+        ppBtn.style.transform = 'translate(-50%,-50%) scale(0.8)';
+        ppBtn.style.pointerEvents = 'none';
+      }
+      function showBtn(){
+        ppBtn.style.opacity = '1';
+        ppBtn.style.transform = 'translate(-50%,-50%) scale(1)';
+        ppBtn.style.pointerEvents = 'auto';
+      }
+
       ppBtn.addEventListener('click', function(e){
         e.stopPropagation();
         var cmd = isPlaying ? 'pauseVideo' : 'playVideo';
@@ -1863,8 +1876,27 @@ heroObs.observe(document.getElementById('hero'));
           : '<svg width="22" height="22" viewBox="0 0 24 24" fill="#FFB23D"><polygon points="7,4 21,12 7,20"/></svg>';
         ppCore.style.transform = 'scale(0.88)';
         setTimeout(function(){ ppCore.style.transform = 'scale(1)'; }, 150);
+
+        if(isPlaying){
+          setTimeout(hideBtn, 400); // some pouco depois de mandar o play
+        } else {
+          showBtn(); // reaparece imediatamente ao pausar
+        }
       });
+
+      // Toca na tela do vídeo enquanto tocando: mostra o botão de novo por 2s
+      wrap.addEventListener('click', function(e){
+        if(e.target === blocker && isPlaying){
+          showBtn();
+          clearTimeout(wrap._hideTimer);
+          wrap._hideTimer = setTimeout(hideBtn, 2000);
+        }
+      });
+
       wrap.appendChild(ppBtn);
+
+      // Esconde o botão automaticamente assim que o vídeo começa (autoplay inicial)
+      setTimeout(hideBtn, 1200);
 
       if(typeof onPlay === 'function') onPlay();
     },{once:true});
