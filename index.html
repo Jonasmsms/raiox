@@ -1807,136 +1807,122 @@ heroObs.observe(document.getElementById('hero'));
     wrap.addEventListener('click',function(){
       wrap.innerHTML='';
       wrap.style.cursor='default';
-      var iframe=document.createElement('iframe');
-      iframe.id = id+'_frame';
-      var params='autoplay=1&rel=0&modestbranding=1&playsinline=1&color=white&controls=0&disablekb=1&iv_load_policy=3&fs=0&enablejsapi=1&mute=0&widget_referrer='+encodeURIComponent(location.href);
-      if(vertical) params+='&loop=1&playlist='+vid;
-      iframe.src='https://www.youtube-nocookie.com/embed/'+vid+'?'+params;
-      iframe.allow='autoplay;encrypted-media;picture-in-picture';
-      iframe.allowFullscreen=true;
-      if(vertical){
-        iframe.style.cssText='position:absolute;top:0;left:0;width:100%;height:100%;border:none;pointer-events:none;';
-      } else {
-        iframe.style.cssText='position:absolute;top:-25%;left:0;width:100%;height:150%;border:none;pointer-events:none;';
-      }
-      wrap.appendChild(iframe);
 
-      // Camada invisível para bloquear interação direta com o player do YouTube
+      var playerDivId = id+'_player';
+      var playerDiv = document.createElement('div');
+      playerDiv.id = playerDivId;
+      playerDiv.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;overflow:hidden;';
+      wrap.appendChild(playerDiv);
+
+      // Camada bloqueadora SEMPRE acima do player, intercepta todo toque
       var blocker = document.createElement('div');
-      blocker.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;z-index:8;background:transparent;touch-action:none;';
+      blocker.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;z-index:9;background:transparent;';
       wrap.appendChild(blocker);
 
-      // Botão de play/pause neon flutuante — centralizado, estilo "fumaça neon"
-      var ppBtn = document.createElement('div');
-      ppBtn.className = 'neon-pp-btn';
-      ppBtn.style.cssText = 'position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:10;pointer-events:auto;background:radial-gradient(circle,rgba(255,123,5,0.25) 0%,rgba(255,123,5,0.08) 60%,transparent 80%);';
+      function createPlayer(){
+        var ytPlayerObj = new YT.Player(playerDivId, {
+          videoId: vid,
+          playerVars:{
+            autoplay:1, controls:0, rel:0, modestbranding:1, playsinline:1,
+            disablekb:1, iv_load_policy:3, fs:0, loop: vertical?1:0,
+            playlist: vertical?vid:undefined, origin: location.origin
+          },
+          events:{
+            'onReady': function(e){
+              e.target.playVideo();
+              if(vertical){
+                playerDiv.style.cssText += 'position:absolute;top:0;left:0;width:100%;height:100%;';
+              } else {
+                playerDiv.style.cssText += 'position:absolute;top:-25%;left:0;width:100%;height:150%;';
+              }
+            }
+          }
+        });
 
-      var ppGlow1 = document.createElement('div');
-      ppGlow1.style.cssText = 'position:absolute;inset:-14px;border-radius:50%;background:radial-gradient(circle,rgba(255,159,5,0.35),transparent 70%);filter:blur(10px);animation:neonSmoke 2.6s ease-in-out infinite;pointer-events:none;';
-      ppBtn.appendChild(ppGlow1);
+        // Botão de play/pause neon flutuante
+        var ppBtn = document.createElement('div');
+        ppBtn.style.cssText = 'position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:10;pointer-events:auto;background:radial-gradient(circle,rgba(255,123,5,0.25) 0%,rgba(255,123,5,0.08) 60%,transparent 80%);opacity:1;transition:opacity .35s ease, transform .35s ease;';
 
-      var ppGlow2 = document.createElement('div');
-      ppGlow2.style.cssText = 'position:absolute;inset:-6px;border-radius:50%;border:1.5px solid rgba(255,159,5,0.5);animation:neonRing 2.6s ease-in-out infinite;pointer-events:none;';
-      ppBtn.appendChild(ppGlow2);
+        var ppGlow1 = document.createElement('div');
+        ppGlow1.style.cssText = 'position:absolute;inset:-14px;border-radius:50%;background:radial-gradient(circle,rgba(255,159,5,0.35),transparent 70%);filter:blur(10px);animation:neonSmoke 2.6s ease-in-out infinite;pointer-events:none;';
+        ppBtn.appendChild(ppGlow1);
 
-      var ppCore = document.createElement('div');
-      ppCore.style.cssText = 'position:relative;width:56px;height:56px;border-radius:50%;background:rgba(10,8,4,0.55);backdrop-filter:blur(3px);border:1.5px solid rgba(255,159,5,0.85);box-shadow:0 0 18px rgba(255,123,5,0.55),0 0 36px rgba(255,123,5,0.25),inset 0 0 14px rgba(255,159,5,0.15);display:flex;align-items:center;justify-content:center;z-index:2;transition:transform .2s;';
-      ppCore.innerHTML = '<svg width="22" height="22" viewBox="0 0 24 24" fill="#FFB23D"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>';
-      ppBtn.appendChild(ppCore);
+        var ppGlow2 = document.createElement('div');
+        ppGlow2.style.cssText = 'position:absolute;inset:-6px;border-radius:50%;border:1.5px solid rgba(255,159,5,0.5);animation:neonRing 2.6s ease-in-out infinite;pointer-events:none;';
+        ppBtn.appendChild(ppGlow2);
 
-      if(!document.getElementById('neonPPStyle')){
-        var styleTag = document.createElement('style');
-        styleTag.id = 'neonPPStyle';
-        styleTag.textContent = '@keyframes neonSmoke{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:.95;transform:scale(1.18)}}'+
-          '@keyframes neonRing{0%,100%{opacity:.4;transform:scale(1)}50%{opacity:.9;transform:scale(1.08)}}';
-        document.head.appendChild(styleTag);
-      }
+        var ppCore = document.createElement('div');
+        ppCore.style.cssText = 'position:relative;width:56px;height:56px;border-radius:50%;background:rgba(10,8,4,0.55);backdrop-filter:blur(3px);border:1.5px solid rgba(255,159,5,0.85);box-shadow:0 0 18px rgba(255,123,5,0.55),0 0 36px rgba(255,123,5,0.25),inset 0 0 14px rgba(255,159,5,0.15);display:flex;align-items:center;justify-content:center;z-index:2;transition:transform .2s;';
+        ppCore.innerHTML = '<svg width="22" height="22" viewBox="0 0 24 24" fill="#FFB23D"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>';
+        ppBtn.appendChild(ppCore);
 
-      var isPlaying = true;
-      ppBtn.style.transition = 'opacity .35s ease, transform .35s ease';
-
-      function hideBtn(){
-        ppBtn.style.opacity = '0';
-        ppBtn.style.transform = 'translate(-50%,-50%) scale(0.8)';
-        ppBtn.style.pointerEvents = 'none';
-      }
-      function showBtn(){
-        ppBtn.style.opacity = '1';
-        ppBtn.style.transform = 'translate(-50%,-50%) scale(1)';
-        ppBtn.style.pointerEvents = 'auto';
-      }
-
-      ppBtn.addEventListener('click', function(e){
-        e.stopPropagation();
-        var cmd = isPlaying ? 'pauseVideo' : 'playVideo';
-        iframe.contentWindow.postMessage(JSON.stringify({event:'command',func:cmd,args:[]}), '*');
-        isPlaying = !isPlaying;
-        ppCore.innerHTML = isPlaying
-          ? '<svg width="22" height="22" viewBox="0 0 24 24" fill="#FFB23D"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>'
-          : '<svg width="22" height="22" viewBox="0 0 24 24" fill="#FFB23D"><polygon points="7,4 21,12 7,20"/></svg>';
-        ppCore.style.transform = 'scale(0.88)';
-        setTimeout(function(){ ppCore.style.transform = 'scale(1)'; }, 150);
-
-        if(isPlaying){
-          setTimeout(hideBtn, 400); // some pouco depois de mandar o play
-        } else {
-          showBtn(); // reaparece imediatamente ao pausar
+        if(!document.getElementById('neonPPStyle')){
+          var styleTag = document.createElement('style');
+          styleTag.id = 'neonPPStyle';
+          styleTag.textContent = '@keyframes neonSmoke{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:.95;transform:scale(1.18)}}'+
+            '@keyframes neonRing{0%,100%{opacity:.4;transform:scale(1)}50%{opacity:.9;transform:scale(1.08)}}';
+          document.head.appendChild(styleTag);
         }
-      });
 
-      // Toca na tela do vídeo enquanto tocando: mostra o botão de novo por 2s
-      wrap.addEventListener('click', function(e){
-        if(e.target === blocker && isPlaying){
-          showBtn();
-          clearTimeout(wrap._hideTimer);
-          wrap._hideTimer = setTimeout(hideBtn, 2000);
+        var isPlaying = true;
+        function hideBtn(){
+          ppBtn.style.opacity = '0';
+          ppBtn.style.transform = 'translate(-50%,-50%) scale(0.8)';
+          ppBtn.style.pointerEvents = 'none';
         }
-      });
+        function showBtn(){
+          ppBtn.style.opacity = '1';
+          ppBtn.style.transform = 'translate(-50%,-50%) scale(1)';
+          ppBtn.style.pointerEvents = 'auto';
+        }
 
-      wrap.appendChild(ppBtn);
+        ppBtn.addEventListener('click', function(e){
+          e.stopPropagation();
+          if(isPlaying){ ytPlayerObj.pauseVideo(); } else { ytPlayerObj.playVideo(); }
+          isPlaying = !isPlaying;
+          ppCore.innerHTML = isPlaying
+            ? '<svg width="22" height="22" viewBox="0 0 24 24" fill="#FFB23D"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>'
+            : '<svg width="22" height="22" viewBox="0 0 24 24" fill="#FFB23D"><polygon points="7,4 21,12 7,20"/></svg>';
+          ppCore.style.transform = 'scale(0.88)';
+          setTimeout(function(){ ppCore.style.transform = 'scale(1)'; }, 150);
+          if(isPlaying){ setTimeout(hideBtn, 400); } else { showBtn(); }
+        });
 
-      // Esconde o botão automaticamente assim que o vídeo começa (autoplay inicial)
-      setTimeout(hideBtn, 1200);
+        blocker.addEventListener('click', function(){
+          if(isPlaying){
+            showBtn();
+            clearTimeout(wrap._hideTimer);
+            wrap._hideTimer = setTimeout(hideBtn, 2000);
+          }
+        });
 
-      if(typeof onPlay === 'function') onPlay();
+        wrap.appendChild(ppBtn);
+        setTimeout(hideBtn, 1200);
+
+        if(typeof onPlay === 'function') onPlay();
+      }
+
+      // Carrega a API do YouTube uma única vez
+      if(window.YT && window.YT.Player){
+        createPlayer();
+      } else {
+        window._ytQueue = window._ytQueue || [];
+        window._ytQueue.push(createPlayer);
+        if(!window._ytApiLoading){
+          window._ytApiLoading = true;
+          var tag = document.createElement('script');
+          tag.src = 'https://www.youtube.com/iframe_api';
+          document.head.appendChild(tag);
+          window.onYouTubeIframeAPIReady = function(){
+            window._ytQueue.forEach(function(fn){ fn(); });
+            window._ytQueue = [];
+          };
+        }
+      }
     },{once:true});
   }
 
-  function startFakeProgress(durationSeconds){
-    var wrap = document.getElementById('vsl-progress-wrap');
-    var bar = document.getElementById('vsl-progress-bar');
-    if(!wrap || !bar) return;
-    wrap.style.display = 'block';
-    var duration = (durationSeconds || 917) * 1000; // proporcional ao vídeo real (15:17 = 917s)
-    var start = null;
-    // easeOutCubic: rápido no início, suave e gradual até o fim — sem parecer forçado
-    function easeOutCubic(t){ return 1 - Math.pow(1 - t, 3); }
-    function step(ts){
-      if(!start) start = ts;
-      var elapsed = ts - start;
-      var t = Math.min(elapsed / duration, 1);
-      var eased = easeOutCubic(t);
-      bar.style.width = (eased * 98) + '%'; // chega perto de 98%, nunca completa sozinho
-      if(t < 1){
-        requestAnimationFrame(step);
-      }
-    }
-    requestAnimationFrame(step);
-  }
-
-
-  // Desabilita controles de mídia nativos do navegador/SO (que aparecem sobre iframes de vídeo)
-  if('mediaSession' in navigator){
-    try{
-      navigator.mediaSession.setActionHandler('play', function(){});
-      navigator.mediaSession.setActionHandler('pause', function(){});
-      navigator.mediaSession.setActionHandler('previoustrack', function(){});
-      navigator.mediaSession.setActionHandler('nexttrack', function(){});
-      navigator.mediaSession.playbackState = 'none';
-    }catch(e){}
-  }
-
-  document.addEventListener('DOMContentLoaded',function(){
+    document.addEventListener('DOMContentLoaded',function(){
     ytPlayer('ytVSL','yvE1JVF-_TI',true, function(){ startFakeProgress(917); });
     ytPlayer('ytDepo1','zCC1epGv0q8',true);
     ytPlayer('ytDepo2','a-n-u52q1ZI',true);
