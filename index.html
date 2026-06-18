@@ -1813,10 +1813,10 @@ heroObs.observe(document.getElementById('hero'));
       wrap.innerHTML = '';
       wrap.style.cursor = 'default';
 
-      // Iframe SEM controles nativos
       var iframe = document.createElement('iframe');
-      var params = 'autoplay=1&rel=0&modestbranding=1&playsinline=1&controls=0&disablekb=1&iv_load_policy=3&fs=0';
+      var params = 'autoplay=1&rel=0&modestbranding=1&playsinline=1&controls=0&disablekb=1&iv_load_policy=3&fs=0&enablejsapi=1';
       if(vertical) params += '&loop=1&playlist='+vid;
+      iframe.id = id+'_iframe';
       iframe.src = 'https://www.youtube.com/embed/'+vid+'?'+params;
       iframe.title = 'video';
       iframe.setAttribute('frameborder','0');
@@ -1824,15 +1824,12 @@ heroObs.observe(document.getElementById('hero'));
       iframe.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;border:none;pointer-events:none;';
       wrap.appendChild(iframe);
 
-      // Camada transparente clicável por cima de TUDO — captura todo toque
       var tapLayer = document.createElement('div');
       tapLayer.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;z-index:5;background:transparent;cursor:pointer;';
       wrap.appendChild(tapLayer);
 
-      // Botão de play/pause neon — visível por 1.5s, depois some
       var ppBtn = document.createElement('div');
       ppBtn.style.cssText = 'position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:10;pointer-events:none;opacity:1;transition:opacity .35s ease;background:radial-gradient(circle,rgba(255,123,5,0.22) 0%,rgba(255,123,5,0.06) 60%,transparent 80%);';
-
       var ppCore = document.createElement('div');
       ppCore.style.cssText = 'width:54px;height:54px;border-radius:50%;background:rgba(10,8,4,0.6);border:1.5px solid rgba(255,159,5,0.85);box-shadow:0 0 16px rgba(255,123,5,0.5),0 0 32px rgba(255,123,5,0.2);display:flex;align-items:center;justify-content:center;';
       ppCore.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="#FFB23D"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>';
@@ -1841,30 +1838,32 @@ heroObs.observe(document.getElementById('hero'));
 
       var isPlaying = true;
       var hideTimer = null;
+      var apiReady = false;
 
-      function setIconPause(){
-        ppCore.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="#FFB23D"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>';
-      }
-      function setIconPlay(){
-        ppCore.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="#FFB23D"><polygon points="7,4 21,12 7,20"/></svg>';
-      }
-      function showBtn(){
-        ppBtn.style.opacity = '1';
-      }
-      function hideBtnDelayed(){
-        clearTimeout(hideTimer);
-        hideTimer = setTimeout(function(){ ppBtn.style.opacity = '0'; }, 1400);
+      function postCmd(cmd){
+        try{
+          iframe.contentWindow.postMessage(JSON.stringify({event:'command',func:cmd,args:[]}), '*');
+        }catch(err){}
       }
 
-      // Mostra o botão e agenda esconder de novo
+      function setIconPause(){ ppCore.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="#FFB23D"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>'; }
+      function setIconPlay(){ ppCore.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="#FFB23D"><polygon points="7,4 21,12 7,20"/></svg>'; }
+      function showBtn(){ ppBtn.style.opacity = '1'; }
+      function hideBtnDelayed(){ clearTimeout(hideTimer); hideTimer = setTimeout(function(){ ppBtn.style.opacity = '0'; }, 1400); }
+
       showBtn();
       hideBtnDelayed();
 
+      // Listener para inicializar a comunicação com o iframe (necessário enablejsapi)
+      iframe.addEventListener('load', function(){
+        setTimeout(function(){
+          postCmd('addEventListener');
+        }, 500);
+      });
+
       tapLayer.addEventListener('click', function(){
         var cmd = isPlaying ? 'pauseVideo' : 'playVideo';
-        try{
-          iframe.contentWindow.postMessage(JSON.stringify({event:'command',func:cmd,args:[]}), '*');
-        }catch(e){}
+        postCmd(cmd);
         isPlaying = !isPlaying;
         if(isPlaying){ setIconPause(); } else { setIconPlay(); clearTimeout(hideTimer); }
         showBtn();
@@ -1875,7 +1874,7 @@ heroObs.observe(document.getElementById('hero'));
     });
   }
 
-    document.addEventListener('DOMContentLoaded',function(){
+  document.addEventListener('DOMContentLoaded',function(){
     ytPlayer('ytVSL','yvE1JVF-_TI',true, function(){ startFakeProgress(917); });
     ytPlayer('ytDepo1','zCC1epGv0q8',true);
     ytPlayer('ytDepo2','a-n-u52q1ZI',true);
