@@ -1871,7 +1871,11 @@ heroObs.observe(document.getElementById('hero'));
       iframe.addEventListener('load', function(){
         setTimeout(function(){
           postCmd('addEventListener');
-        }, 500);
+          postCmd('playVideo'); // reforça o play, pois mobile pode bloquear autoplay silencioso
+        }, 300);
+        setTimeout(function(){
+          postCmd('playVideo'); // segunda tentativa, alguns mobiles demoram a aceitar o comando
+        }, 1000);
       });
 
       tapLayer.addEventListener('click', function(){
